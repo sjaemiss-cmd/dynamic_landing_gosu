@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Phone, Check, ChevronDown, ChevronUp, Star, ArrowRight, Menu, X, MapPin, Clock } from "lucide-react";
+import { Phone, Check, ChevronDown, ChevronUp, Star, ArrowRight, Menu, X, MapPin, Clock, Award, Users } from "lucide-react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -19,70 +19,142 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header
-      className="absolute top-0 left-0 right-0 z-50 py-5"
-    >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className="flex items-center">
-          <img
-            src="/logo-white.png"
-            alt="고수의 운전면허 도봉점"
-            className="h-10 md:h-12 w-auto object-contain"
-          />
+    <>
+      <header
+        className="fixed top-0 left-0 right-0 z-50 py-5 bg-brand-black/80 backdrop-blur-sm"
+      >
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <div className="flex items-center">
+            <img
+              src="/logo-white.png"
+              alt="고수의 운전면허 도봉점"
+              className="h-10 md:h-12 w-auto object-contain"
+            />
+          </div>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-6">
+            <nav className="flex gap-6 text-sm font-medium text-gray-300">
+              <a href="#calculator" className="hover:text-white transition-colors">비용 계산기</a>
+              <a href="#usp" className="hover:text-white transition-colors">특장점</a>
+              <a href="#reviews" className="hover:text-white transition-colors">후기</a>
+              <a href="#location" className="hover:text-white transition-colors">약도</a>
+              <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+            </nav>
+            <a
+              href="tel:02-930-9394"
+              className="flex items-center gap-2 bg-brand-yellow text-brand-black px-4 py-2 rounded-full font-bold hover:bg-yellow-400 transition-colors"
+            >
+              <Phone size={18} />
+              <span>전화 상담</span>
+            </a>
+          </div>
+
+          {/* Mobile: Phone Button + Hamburger Menu */}
+          <div className="md:hidden flex items-center gap-3">
+            {/* Phone Button */}
+            <a
+              href="tel:02-930-9394"
+              className="flex items-center justify-center gap-1.5 bg-brand-yellow text-brand-black px-3 py-2 rounded-full font-bold text-sm hover:bg-yellow-400 transition-colors"
+            >
+              <Phone size={16} />
+              <span>전화</span>
+            </a>
+
+            {/* Hamburger Button */}
+            <button
+              className="p-2 text-white touch-manipulation"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="메뉴"
+              type="button"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
+      </header>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-6">
-          <nav className="flex gap-6 text-sm font-medium text-gray-300">
-            <a href="#calculator" className="hover:text-white transition-colors">비용 계산기</a>
-            <a href="#usp" className="hover:text-white transition-colors">특장점</a>
-            <a href="#reviews" className="hover:text-white transition-colors">후기</a>
-            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
-          </nav>
-          <a
-            href="tel:02-930-9394"
-            className="flex items-center gap-2 bg-brand-yellow text-brand-black px-4 py-2 rounded-full font-bold hover:bg-yellow-400 transition-colors"
-          >
-            <Phone size={18} />
-            <span>전화 상담</span>
-          </a>
-        </div>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden p-2 text-white"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Nav */}
+      {/* Mobile Nav Dropdown - Outside header for proper z-index */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-brand-black border-t border-gray-800 overflow-hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-[80px] left-0 right-0 z-40 md:hidden bg-brand-black border-t border-b border-gray-800 shadow-2xl"
           >
-            <nav className="flex flex-col p-4 gap-4 text-sm font-medium text-gray-300">
-              <a href="#calculator" onClick={() => setIsMobileMenuOpen(false)}>비용 계산기</a>
-              <a href="#usp" onClick={() => setIsMobileMenuOpen(false)}>특장점</a>
-              <a href="#reviews" onClick={() => setIsMobileMenuOpen(false)}>후기</a>
-              <a href="#faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
+            <nav className="container mx-auto px-4 py-4 flex flex-col gap-1">
               <a
-                href="tel:02-930-9394"
-                className="flex items-center justify-center gap-2 bg-brand-yellow text-brand-black px-4 py-3 rounded-lg font-bold"
+                href="#calculator"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setTimeout(() => {
+                    document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
               >
-                <Phone size={18} />
-                <span>전화 상담</span>
+                비용 계산기
+              </a>
+              <a
+                href="#usp"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setTimeout(() => {
+                    document.getElementById('usp')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
+              >
+                특장점
+              </a>
+              <a
+                href="#reviews"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setTimeout(() => {
+                    document.getElementById('reviews')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
+              >
+                후기
+              </a>
+              <a
+                href="#location"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setTimeout(() => {
+                    document.getElementById('location')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
+              >
+                약도
+              </a>
+              <a
+                href="#faq"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setTimeout(() => {
+                    document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
+              >
+                FAQ
               </a>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 };
 
@@ -126,7 +198,7 @@ const Hero = () => {
             </h1>
             <p className="text-gray-300 text-lg md:text-2xl mb-10 leading-relaxed break-keep max-w-3xl mx-auto">
               불합격할 때마다 추가되는 비용과 시간.<br className="md:hidden" />
-              고수의 운전면허에서 <strong className="text-brand-yellow">반값으로 한 번에</strong> 합격하세요.
+              고수의 운전면허에서 <br className="md:hidden" /><strong className="text-brand-yellow">저렴한 비용으로 한 번에</strong> 합격하세요.
             </p>
           </motion.div>
         </div>
@@ -152,7 +224,7 @@ const CostCalculator = () => {
   const maxCost = academyBase + (5 * academyFailCost); // Max possible cost for scaling
 
   return (
-    <section id="calculator" className="min-h-screen flex flex-col justify-center py-12 md:py-20 bg-brand-black">
+    <section id="calculator" className="min-h-screen flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-20 bg-brand-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 break-keep">
@@ -302,55 +374,133 @@ const CostCalculator = () => {
   );
 };
 
-// 4. USP Section
+// 4. USP (Unique Selling Proposition)
 const USP = () => {
-  const features = [
-    {
-      icon: <Star className="w-10 h-10 text-brand-yellow" />,
-      title: "합격 무제한 보장",
-      desc: "합격할 때까지 추가 비용 없이 연습하세요. 면허 취득의 끝까지 함께합니다.",
-    },
-    {
-      icon: <Check className="w-10 h-10 text-brand-yellow" />,
-      title: "1:1 맞춤 코칭",
-      desc: "나의 부족한 점만 쏙쏙 골라 집중 공략! 전문 매니저가 옆에서 밀착 케어합니다.",
-    },
-    {
-      icon: <Phone className="w-10 h-10 text-brand-yellow" />,
-      title: "원하는 시간 예약",
-      desc: "내 스케줄에 맞춰 자유롭게 예약 가능. 바쁜 직장인, 학생도 OK!",
-    },
-    {
-      icon: <Star className="w-10 h-10 text-brand-yellow" />,
-      title: "연예인·인플루언서의 선택",
-      desc: "이미 수많은 연예인과 인플루언서들이 고수 도봉점에서 면허를 취득해갔습니다. SNS, 방송에서 인정받은 '면허맛집'!",
-    },
-  ];
+  const stationVideoRef = React.useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (stationVideoRef.current) {
+      stationVideoRef.current.playbackRate = 2.0;
+    }
+  }, []);
 
   return (
-    <section id="usp" className="min-h-screen flex flex-col justify-center py-12 md:py-20 bg-brand-black">
+    <section id="usp" className="min-h-screen flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-20 bg-brand-black">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-16">
-          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 break-keep">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 break-keep">
             왜 <span className="text-brand-yellow">고수의 운전면허 도봉점</span>인가요?
           </h2>
-          <p className="text-gray-400 break-keep">다른 곳과는 비교할 수 없는 특별한 혜택</p>
+          <p className="text-gray-400 text-lg break-keep">다른 곳과는 비교할 수 없는 압도적인 차이</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -10 }}
-              className="bg-gray-900 rounded-2xl p-8 border border-gray-800 hover:shadow-xl transition-all duration-300 text-center"
-            >
-              <div className="bg-gray-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                {feature.icon}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          {/* 1. 합격 무제한 보장 (Text Card - Highlight) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="bg-brand-yellow rounded-3xl p-8 md:p-10 flex flex-col justify-between min-h-[320px] relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div className="relative z-10">
+              <div className="bg-white/20 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm">
+                <Award className="w-8 h-8 text-brand-black" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 break-keep">{feature.title}</h3>
-              <p className="text-gray-400 leading-relaxed break-keep">{feature.desc}</p>
-            </motion.div>
-          ))}
+              <h3 className="text-2xl md:text-3xl font-bold text-brand-black mb-4 break-keep">
+                합격할 때까지<br />무제한 보장
+              </h3>
+              <p className="text-brand-black/80 font-medium text-lg leading-relaxed break-keep">
+                첫 결제후엔 걱정하지 마세요.<br />
+                추가 비용 없이 끝까지 책임집니다.
+              </p>
+            </div>
+            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-500" />
+          </motion.div>
+
+          {/* 2. 연예인 선택 (Video Card) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="relative rounded-3xl overflow-hidden min-h-[320px] group"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
+            <video
+              src="/celebv.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="relative z-20 h-full flex flex-col justify-end p-8 md:p-10">
+              <div className="bg-brand-yellow text-brand-black text-xs font-bold px-3 py-1 rounded-full inline-flex items-center w-fit mb-3">
+                <Star className="w-3 h-3 mr-1" fill="currentColor" /> CELEB's PICK
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 break-keep">
+                연예인도 믿고 찾는<br />검증된 운전학원
+              </h3>
+              <p className="text-gray-300 text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                수많은 셀럽들이 선택한 이유가 있습니다.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* 3. 최고의 접근성 (Video Card) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative rounded-3xl overflow-hidden min-h-[320px] group"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
+            <video
+              ref={stationVideoRef}
+              src="/station.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="relative z-20 h-full flex flex-col justify-end p-8 md:p-10">
+              <div className="bg-brand-yellow text-brand-black text-xs font-bold px-3 py-1 rounded-full inline-flex items-center w-fit mb-3">
+                <MapPin className="w-3 h-3 mr-1" /> 2min WALK
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 break-keep">
+                노원역 3번 출구<br />도보 2분 컷!
+              </h3>
+              <p className="text-gray-300 text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+                도봉면허시험장도 걸어서 5분이면 도착해요.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* 4. 1:1 밀착 코칭 (Text Card - Dark) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="bg-gray-900 border border-gray-800 rounded-3xl p-8 md:p-10 flex flex-col justify-between min-h-[320px] relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 hover:border-gray-700"
+          >
+            <div className="relative z-10">
+              <div className="bg-gray-800 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-gray-700 transition-colors">
+                <Users className="w-8 h-8 text-brand-yellow" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 break-keep">
+                1:1 밀착<br />맞춤 코칭
+              </h3>
+              <p className="text-gray-400 text-lg leading-relaxed break-keep">
+                나의 운전 실력과 습관을 분석하여<br />
+                부족한 부분을 집중적으로 케어해드립니다.
+              </p>
+            </div>
+            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-brand-yellow/5 rounded-full blur-3xl group-hover:bg-brand-yellow/10 transition-colors duration-500" />
+          </motion.div>
         </div>
       </div>
     </section>
@@ -358,8 +508,53 @@ const USP = () => {
 };
 
 // 5. Social Proof (Infinite Marquee)
+const ReviewModal = ({ review, onClose }: { review: any; onClose: () => void }) => {
+  if (!review) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        className="bg-gray-900 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative border border-gray-800"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition-colors z-10"
+        >
+          <X size={20} />
+        </button>
+
+        <div className="flex flex-col md:flex-row">
+          <div className="w-full md:w-1/2 h-64 md:h-auto relative">
+            <img
+              src={review.image}
+              alt={review.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col">
+            <div className="flex justify-between items-center mb-4">
+              <span className="text-brand-yellow font-bold text-lg">{review.name}</span>
+              <span className="text-gray-400 text-sm">{review.date}</span>
+            </div>
+            <div className="flex-grow overflow-y-auto">
+              <p className="text-white leading-relaxed whitespace-pre-wrap">
+                {review.text}
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
 const SocialProof = () => {
-  const reviews = [
+  // Fallback static reviews (used when API fails)
+  const staticReviews = [
     {
       id: 0,
       image: "https://gosudriving.com/data/files/99196b4682b37e1fbb5d91dd50b6eec1.jpg",
@@ -418,49 +613,102 @@ const SocialProof = () => {
     }
   ];
 
+  const [reviews, setReviews] = useState(staticReviews);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedReview, setSelectedReview] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/reviews');
+        const data = await response.json();
+
+        if (data.success && data.reviews && data.reviews.length > 0) {
+          setReviews(data.reviews);
+          setError(null);
+        } else {
+          // Use fallback data if API returns no reviews
+          console.warn('No reviews from API, using fallback data');
+          setReviews(staticReviews);
+        }
+      } catch (err) {
+        console.error('Failed to fetch reviews:', err);
+        setError('리뷰를 불러오는데 실패했습니다. 기본 리뷰를 표시합니다.');
+        // Keep using static reviews on error
+        setReviews(staticReviews);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, []);
+
   return (
-    <section id="reviews" className="min-h-screen flex flex-col justify-center py-12 md:py-20 bg-brand-black overflow-hidden">
+    <section id="reviews" className="min-h-screen flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-20 bg-brand-black overflow-hidden">
       <div className="container mx-auto px-4 mb-8 md:mb-12 text-center">
         <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 break-keep">
           이미 <span className="text-brand-yellow">수많은 합격자</span>가 증명합니다
         </h2>
         <p className="text-gray-400 break-keep">도봉점 실제 수강생들의 생생한 합격 인증</p>
+        {error && (
+          <p className="text-gray-500 text-sm mt-2">
+            {error}
+          </p>
+        )}
       </div>
 
       <div className="relative flex w-full mb-12">
-        <motion.div
-          className="flex gap-6 whitespace-nowrap"
-          animate={{ x: [0, -1000] }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 20,
-              ease: "linear",
-            },
-          }}
-        >
-          {[...reviews, ...reviews].map((review, index) => (
-            <div
-              key={index}
-              className="w-64 h-80 md:w-80 md:h-96 flex-shrink-0 bg-gray-800 rounded-xl overflow-hidden relative group"
-            >
-              {/* Replace src with actual review image */}
-              <img
-                src={review.image}
-                alt={review.text}
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-12">
-                <div className="flex justify-between items-end mb-1">
-                  <span className="text-brand-yellow font-bold text-sm">{review.name}</span>
-                  <span className="text-gray-400 text-xs">{review.date}</span>
-                </div>
-                <p className="text-white text-sm font-medium line-clamp-2">{review.text}</p>
+        {isLoading ? (
+          // Loading skeleton
+          <div className="flex gap-6 whitespace-nowrap">
+            {[...Array(8)].map((_, index) => (
+              <div
+                key={index}
+                className="w-64 h-80 md:w-80 md:h-96 flex-shrink-0 bg-gray-800 rounded-xl overflow-hidden animate-pulse"
+              >
+                <div className="w-full h-full bg-gray-700"></div>
               </div>
-            </div>
-          ))}
-        </motion.div>
+            ))}
+          </div>
+        ) : (
+          // Reviews marquee
+          <motion.div
+            className="flex gap-6 whitespace-nowrap"
+            animate={{ x: [0, -1000] }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 20,
+                ease: "linear",
+              },
+            }}
+          >
+            {[...reviews, ...reviews].map((review, index) => (
+              <div
+                key={index}
+                onClick={() => setSelectedReview(review)}
+                className="w-64 h-80 md:w-80 md:h-96 flex-shrink-0 bg-gray-800 rounded-xl overflow-hidden relative group cursor-pointer border border-transparent hover:border-brand-yellow/50 transition-all duration-300"
+              >
+                <img
+                  src={review.image}
+                  alt={review.text}
+                  className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-12">
+                  <div className="flex justify-between items-end mb-1">
+                    <span className="text-brand-yellow font-bold text-sm">{review.name}</span>
+                    <span className="text-gray-400 text-xs">{review.date}</span>
+                  </div>
+                  <p className="text-white text-sm font-medium line-clamp-2">{review.text}</p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        )}
       </div>
 
       <div className="text-center">
@@ -473,18 +721,21 @@ const SocialProof = () => {
           더 많은 생생한 후기 보러가기 <ArrowRight size={20} />
         </a>
       </div>
+
+      <AnimatePresence>
+        {selectedReview && (
+          <ReviewModal
+            review={selectedReview}
+            onClose={() => setSelectedReview(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
 
 // 6. Student Discount Event (FOMO)
 const StudentEvent = () => {
-  // Calculate days remaining (Assuming deadline is Nov 30)
-  const deadline = new Date("2025-11-30T23:59:59");
-  const today = new Date();
-  const diffTime = Math.abs(deadline.getTime() - today.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
   return (
     <section className="py-12 md:py-20 bg-gradient-to-b from-brand-black to-gray-900 border-y border-gray-800">
       <div className="container mx-auto px-4 text-center">
@@ -495,50 +746,52 @@ const StudentEvent = () => {
           className="max-w-4xl mx-auto bg-gray-800 rounded-3xl p-6 md:p-12 border-2 border-brand-yellow shadow-[0_0_30px_rgba(254,206,72,0.15)] relative overflow-hidden"
         >
           {/* Badge */}
-          <div className="absolute top-0 right-0 bg-status-red text-white font-bold px-4 py-1 md:px-6 md:py-2 text-sm md:text-base rounded-bl-2xl shadow-lg animate-pulse">
-            마감 임박! D-{diffDays}
+          <div className="absolute top-0 right-0 bg-status-red text-white font-bold px-6 py-2 md:px-8 md:py-3 text-sm md:text-base rounded-bl-2xl shadow-lg animate-pulse z-10">
+            마감 임박!
           </div>
 
-          <h2 className="text-2xl md:text-5xl font-extrabold text-white mb-4 md:mb-6 break-keep">
-            수험생 여러분,<br />
-            <span className="text-brand-yellow">최대 20% 할인</span> 놓치지 마세요!
-          </h2>
+          <div className="mb-8">
+            <span className="inline-block bg-brand-yellow text-brand-black font-bold px-4 py-1 rounded-full mb-4">
+              수험생 특별 혜택
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 break-keep">
+              수험표만 있으면 <br className="md:hidden" /><span className="text-brand-yellow">최대 20% 할인</span>
+            </h2>
+            <p className="text-gray-300 text-lg md:text-xl break-keep">
+              대학 입학 전, 가장 저렴하게 면허를 취득할 수 있는 마지막 기회입니다.
+            </p>
+          </div>
 
-          <p className="text-gray-300 text-base md:text-lg mb-6 md:mb-8 break-keep leading-relaxed">
-            <span className="text-white font-bold">11월 30일</span>까지, 딱 <span className="text-status-red font-bold">일주일</span> 남았습니다.
-          </p>
-
-          <div className="bg-gray-900 rounded-xl p-4 md:p-6 mb-6 md:mb-8 inline-block w-full max-w-2xl">
-            <ul className="text-left space-y-3 text-gray-300">
-              <li className="flex items-start gap-2">
-                <Check className="text-brand-yellow flex-shrink-0 mt-1" size={20} />
-                <span>수험표 지참 시 <strong className="text-white">기본 10% 할인</strong></span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="text-brand-yellow flex-shrink-0 mt-1" size={20} />
-                <span>친구와 함께 등록 시 <strong className="text-white">15% 할인</strong></span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="text-brand-yellow flex-shrink-0 mt-1" size={20} />
-                <span>인스타그램 업로드 시 <br></br><strong className="text-white">중복 5% 추가 할인</strong> (최대 20%)</span>
-              </li>
-            </ul>
+          {/* Urgency Counter */}
+          <div className="bg-black/30 rounded-xl p-6 mb-8 max-w-lg mx-auto border border-white/10 backdrop-blur-sm">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <Clock className="text-status-red w-5 h-5 animate-pulse" />
+              <span className="text-status-red font-bold text-lg">선착순 마감 주의</span>
+            </div>
+            <p className="text-white text-xl md:text-2xl font-bold">
+              현재 남은 할인 정원: <span className="text-status-red text-3xl md:text-4xl font-black mx-1">12</span>명
+            </p>
+            <div className="w-full bg-gray-700 h-3 rounded-full mt-4 overflow-hidden">
+              <div className="bg-status-red h-full rounded-full w-[88%] animate-[pulse_2s_infinite]" />
+            </div>
+            <p className="text-gray-400 text-xs mt-2 text-right">
+              * 실시간 예약으로 인해 조기 마감될 수 있습니다.
+            </p>
           </div>
 
           <motion.a
-            href="https://pf.kakao.com/_hxlxnIs"
+            href="https://pcmap.place.naver.com/place/38729351/ticket"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-brand-yellow text-brand-black px-8 py-4 rounded-full font-bold text-xl shadow-lg hover:bg-yellow-400 transition-colors"
+            className="inline-flex items-center gap-2 bg-brand-yellow text-brand-black px-8 py-4 rounded-full font-bold text-xl shadow-lg hover:bg-yellow-400 transition-colors relative overflow-hidden group"
           >
-            수험표 할인받고 등록하기 <ArrowRight size={24} />
+            <span className="relative z-10 flex items-center gap-2">
+              수험표 할인받고 등록하기 <ArrowRight size={24} />
+            </span>
+            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </motion.a>
-
-          <p className="mt-4 text-sm text-gray-500">
-            * 선착순 마감될 수 있습니다. 서두르세요!
-          </p>
         </motion.div>
       </div>
     </section>
@@ -548,7 +801,7 @@ const StudentEvent = () => {
 // 6.5 Location Section (New)
 const LocationSection = () => {
   return (
-    <section className="py-12 md:py-20 bg-brand-black">
+    <section id="location" className="pt-24 pb-12 md:pt-32 md:pb-20 bg-brand-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-16">
           <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 break-keep">
@@ -660,7 +913,7 @@ const FAQ = () => {
     },
     {
       q: "예약은 어떻게 하나요?",
-      a: "카카오톡을 통해 원하시는 시간에 자유롭게 예약하실 수 있습니다. 당일 예약도 가능합니다.",
+      a: "최초 예약은 네이버 예약 혹은 카카오톡 채팅을 통해 진행하실 수 있으며, 이후 예약은 카카오톡을 통해 원하시는 시간에 자유롭게 예약하실 수 있습니다. 당일 예약도 가능합니다.",
     },
     {
       q: "불합격하면 추가 비용이 드나요?",
@@ -671,7 +924,7 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="min-h-screen flex flex-col justify-center py-12 md:py-20 bg-brand-black">
+    <section id="faq" className="min-h-screen flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-20 bg-brand-black">
       <div className="container mx-auto px-4 max-w-3xl">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">자주 묻는 질문</h2>

@@ -27,3 +27,25 @@ body {
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   overflow-x: hidden;
 }
+
+/* Fixed header offset for anchor links */
+section[id] {
+  scroll-margin-top: 120px;
+}
+
+/* Desktop-only Scroll Snapping */
+@media (min-width: 768px) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  /* Disable snapping for short sections or footer if needed */
+  footer {
+    scroll-snap-align: start;
+  }
+}
