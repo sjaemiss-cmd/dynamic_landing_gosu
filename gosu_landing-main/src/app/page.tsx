@@ -165,7 +165,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero_background.jpg"
+          src="/hero.png"
           alt="Hero Background"
           fill
           className="object-cover"
@@ -198,7 +198,7 @@ const Hero = () => {
             </h1>
             <p className="text-gray-300 text-lg md:text-2xl mb-10 leading-relaxed break-keep max-w-3xl mx-auto">
               불합격할 때마다 추가되는 비용과 시간.<br className="md:hidden" />
-              고수의 운전면허에서 <br className="md:hidden" /><strong className="text-brand-yellow">저렴한 비용으로 한 번에</strong> 합격하세요.
+              &nbsp;고수의 운전면허에서 <br className="md:hidden" /><strong className="text-brand-yellow">저렴한 비용으로 한번에</strong> 합격하세요.
             </p>
           </motion.div>
         </div>
