@@ -165,7 +165,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero.png"
+          src="/hero2.png"
           alt="Hero Background"
           fill
           className="object-cover"
