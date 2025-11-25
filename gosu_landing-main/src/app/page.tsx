@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, useMotionValue } from "framer-motion";
-import { Phone, Check, ChevronDown, ChevronUp, Star, ArrowRight, Menu, X, MapPin, Clock, Award, Users } from "lucide-react";
+import { Phone, Check, ChevronDown, ChevronUp, Star, ArrowRight, Menu, X, MapPin, Clock, Award, Users, ShieldCheck, Monitor } from "lucide-react";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -39,6 +39,7 @@ const Header = () => {
               <a href="#usp" className="hover:text-white transition-colors">특장점</a>
               <a href="#reviews" className="hover:text-white transition-colors">후기</a>
               <a href="#location" className="hover:text-white transition-colors">약도</a>
+              <a href="#event" className="hover:text-white transition-colors">이벤트</a>
               <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
             </nav>
             <a
@@ -138,6 +139,19 @@ const Header = () => {
                 약도
               </a>
               <a
+                href="#event"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsMobileMenuOpen(false);
+                  setTimeout(() => {
+                    document.getElementById('event')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
+              >
+                이벤트
+              </a>
+              <a
                 href="#faq"
                 onClick={(e) => {
                   e.preventDefault();
@@ -149,11 +163,11 @@ const Header = () => {
                 className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
               >
                 FAQ
-              </a>
-            </nav>
-          </motion.div>
+              </a >
+            </nav >
+          </motion.div >
         )}
-      </AnimatePresence>
+      </AnimatePresence >
     </>
   );
 };
@@ -165,7 +179,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero2.png"
+          src="/hero3.png"
           alt="Hero Background"
           fill
           className="object-cover"
@@ -227,13 +241,13 @@ const Hero = () => {
               {/* Mobile version */}
               <span className="md:hidden">
                 불합격할 때마다 추가되는 비용과 시간.<br />
-                &nbsp;고수의 운전면허에서 <br /><strong className="text-brand-yellow">저렴한 비용으로 한번에</strong> 합격하세요.
+                &nbsp;고수의 운전면허에서 <br /><strong className="text-brand-yellow">합리적 비용으로 한번에</strong> 합격하세요.
               </span>
               {/* Desktop version */}
               <span className="hidden md:inline">
                 불합격할 때마다 추가되는 비용과 시간<br />
                 고수의 운전면허에서<br />
-                <strong className="text-brand-yellow">저렴한 비용으로 한번에</strong> 합격하세요.
+                <strong className="text-brand-yellow">합리적 비용으로 한번에</strong> 합격하세요.
               </span>
             </p>
           </motion.div>
@@ -476,7 +490,7 @@ const USP = () => {
                 <Star className="w-3 h-3 mr-1" fill="currentColor" /> CELEB's PICK
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 break-keep" style={{ fontFamily: "'Hakgyoansim Allimjang', sans-serif" }}>
-                연예인도 믿고 찾는<br />검증된 운전학원
+                연예인도 믿고 찾는<br />검증된 운전 연습장
               </h3>
               <p className="text-gray-300 text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
                 수많은 셀럽들이 선택한 이유가 있습니다.
@@ -536,6 +550,68 @@ const USP = () => {
               </p>
             </div>
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-brand-yellow/5 rounded-full blur-3xl group-hover:bg-brand-yellow/10 transition-colors duration-500" />
+          </motion.div>
+
+          {/* 5. 실수해도 괜찮아 (Text Card - Dark) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="bg-gray-900 border border-gray-800 rounded-3xl p-8 md:p-10 flex flex-col justify-between min-h-[320px] relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 hover:border-gray-700"
+          >
+            <div className="relative z-10">
+              <div className="bg-gray-800 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-gray-700 transition-colors">
+                <ShieldCheck className="w-8 h-8 text-brand-yellow" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 break-keep" style={{ fontFamily: "'Hakgyoansim Allimjang', sans-serif" }}>
+                실수해도 괜찮아요<br />사고 걱정 ZERO
+              </h3>
+              <p className="text-gray-400 text-lg leading-relaxed break-keep">
+                교통사고 걱정 없이 마음껏 실수하며<br />
+                진짜 운전 실력을 키워보세요.
+              </p>
+            </div>
+            <div className="absolute -bottom-4 -right-4 w-40 h-40 md:w-48 md:h-48 z-0 opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500">
+              <Image
+                src="/car.png"
+                alt="Car"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-brand-yellow/5 rounded-full blur-3xl group-hover:bg-brand-yellow/10 transition-colors duration-500" />
+          </motion.div>
+
+          {/* 6. 현실감 (Text Card - Yellow) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="bg-brand-yellow rounded-3xl p-8 md:p-10 flex flex-col justify-between min-h-[320px] relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300"
+          >
+            <div className="relative z-10">
+              <div className="bg-white/20 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-sm">
+                <Monitor className="w-8 h-8 text-brand-black" />
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-brand-black mb-4 break-keep" style={{ fontFamily: "'Hakgyoansim Allimjang', sans-serif" }}>
+                풀 한 포기까지<br />그대로 재현
+              </h3>
+              <p className="text-brand-black/80 font-medium text-lg leading-relaxed break-keep">
+                전국 시험장을 완벽하게 구현하고<br />
+                모션 베이스로 현장감까지 잡았습니다.
+              </p>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 h-32 z-0 opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 origin-bottom translate-x-12">
+              <Image
+                src="/grass.png"
+                alt="Grass"
+                fill
+                className="object-contain object-bottom"
+              />
+            </div>
+            <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-500" />
           </motion.div>
         </div>
       </div>
@@ -682,15 +758,76 @@ const SocialProof = () => {
     fetchReviews();
   }, []);
 
+  // Auto-scroll logic
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer || isLoading) return;
+
+    let animationFrameId: number;
+    let scrollSpeed = 1; // Pixels per frame
+
+    const scroll = () => {
+      if (!isPaused && scrollContainer) {
+        scrollContainer.scrollLeft += scrollSpeed;
+
+        // Infinite scroll reset
+        // We assume the content is duplicated (reviews + reviews)
+        // When we reach halfway (end of first set), reset to 0
+        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
+          scrollContainer.scrollLeft = 0;
+        }
+      }
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+
+    animationFrameId = requestAnimationFrame(scroll);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isPaused, isLoading, reviews]);
+
   return (
     <section id="reviews" className="min-h-screen flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-20 bg-brand-black overflow-hidden">
-      <div className="container mx-auto px-4 mb-8 md:mb-12 text-center">
-        <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 break-keep" style={{ fontFamily: "'Hakgyoansim Allimjang', sans-serif" }}>
-          이미 <span className="text-brand-yellow">수많은 합격자</span>가 증명합니다
-        </h2>
-        <p className="text-gray-400 break-keep">도봉점 실제 수강생들의 생생한 합격 인증</p>
+      <div className="container mx-auto px-4 mb-12 md:mb-20 text-center relative">
+        {/* Spotlight Effect Removed */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="relative z-10"
+        >
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 break-keep tracking-tight leading-tight" style={{ fontFamily: "'Hakgyoansim Allimjang', sans-serif" }}>
+            이미{" "}
+            <span className="relative inline-block">
+              {/* Glow behind text */}
+              <span className="absolute inset-0 bg-brand-yellow/30 blur-2xl rounded-full"></span>
+              <motion.span
+                className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FFFACD] to-[#FFD700] bg-[length:200%_auto] text-4xl md:text-6xl"
+                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                style={{ textShadow: "0 0 20px rgba(254, 206, 72, 0.3)" }}
+              >
+                수많은 합격자
+              </motion.span>
+            </span>
+            가<br className="md:hidden" /> 증명합니다
+          </h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-gray-300 text-lg md:text-xl break-keep"
+          >
+            도봉점 실제 수강생들의 <span className="text-white font-bold border-b border-brand-yellow/50 pb-0.5">생생한 합격 인증</span>
+          </motion.p>
+        </motion.div>
+
         {error && (
-          <p className="text-gray-500 text-sm mt-2">
+          <p className="text-gray-500 text-sm mt-4 relative z-10">
             {error}
           </p>
         )}
@@ -699,8 +836,8 @@ const SocialProof = () => {
       <div className="relative flex w-full mb-12">
         {isLoading ? (
           // Loading skeleton
-          <div className="flex gap-6 whitespace-nowrap">
-            {[...Array(8)].map((_, index) => (
+          <div className="flex gap-6 whitespace-nowrap overflow-hidden px-4">
+            {[...Array(4)].map((_, index) => (
               <div
                 key={index}
                 className="w-64 h-80 md:w-80 md:h-96 flex-shrink-0 bg-gray-800 rounded-xl overflow-hidden animate-pulse"
@@ -710,29 +847,28 @@ const SocialProof = () => {
             ))}
           </div>
         ) : (
-          // Reviews marquee
-          <motion.div
-            className="flex gap-6 whitespace-nowrap"
-            animate={{ x: [0, -1000] }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 20,
-                ease: "linear",
-              },
-            }}
+          // Swipeable Reviews
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto no-scrollbar px-4 pb-4"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
           >
-            {[...reviews, ...reviews].map((review, index) => (
+            {/* Duplicate reviews for infinite scroll effect */}
+            {[...reviews, ...reviews, ...reviews].map((review, index) => (
               <div
-                key={index}
+                key={`${review.id}-${index}`}
                 onClick={() => setSelectedReview(review)}
-                className="w-64 h-80 md:w-80 md:h-96 flex-shrink-0 bg-gray-800 rounded-xl overflow-hidden relative group cursor-pointer border border-transparent hover:border-brand-yellow/50 transition-all duration-300"
+                className="w-64 h-80 md:w-80 md:h-96 flex-shrink-0 bg-gray-800 rounded-xl overflow-hidden relative group cursor-pointer border border-transparent hover:border-brand-yellow/50 transition-all duration-300 snap-center"
               >
                 <img
                   src={review.image}
                   alt={review.text}
                   className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                  draggable={false}
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-12">
                   <div className="flex justify-between items-end mb-1">
@@ -743,7 +879,7 @@ const SocialProof = () => {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
         )}
       </div>
 
@@ -766,7 +902,7 @@ const SocialProof = () => {
           />
         )}
       </AnimatePresence>
-    </section>
+    </section >
   );
 };
 
@@ -813,7 +949,7 @@ const StudentEvent = () => {
   };
 
   return (
-    <section className="py-12 md:py-20 bg-gradient-to-b from-brand-black to-gray-900 border-y border-gray-800">
+    <section id="event" className="py-12 md:py-20 bg-gradient-to-b from-brand-black to-gray-900 border-y border-gray-800">
       <div className="container mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -1006,7 +1142,7 @@ const FAQ = () => {
   const faqs = [
     {
       q: "정말 시뮬레이터로 연습해도 합격할 수 있나요?",
-      a: "네, 가능합니다! 실제 시험장 코스를 완벽하게 구현하여 코스 암기와 핸들링 감각을 익히는데 최적화되어 있습니다. 실제 차를 타기 전 충분한 연습이 되어 합격률이 매우 높습니다.",
+      a: "네, 합격 할 수 있기 때문에 합격무제한 상품을 기획했습니다! 실제 시험장 코스를 완벽하게 구현하여 코스 암기와 핸들링 감각을 익히는데 최적화되어 있습니다. 실제 차를 타기 전 충분한 연습이 되어 합격률이 매우 높습니다.",
     },
     {
       q: "운전을 아예 처음 해보는데 괜찮을까요?",
@@ -1027,8 +1163,16 @@ const FAQ = () => {
   return (
     <section id="faq" className="min-h-screen flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-20 bg-brand-black">
       <div className="container mx-auto px-4 max-w-3xl">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Hakgyoansim Allimjang', sans-serif" }}>자주 묻는 질문</h2>
+        <div className="text-center mb-8 md:mb-12 relative inline-block w-full">
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-20 h-20 md:w-32 md:h-32 animate-bounce duration-[2000ms] z-0 opacity-80">
+            <Image
+              src="/speaker.png"
+              alt="Speaker"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 relative z-10" style={{ fontFamily: "'Hakgyoansim Allimjang', sans-serif" }}>자주 묻는 질문</h2>
         </div>
 
         <div className="space-y-4">
