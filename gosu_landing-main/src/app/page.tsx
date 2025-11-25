@@ -728,7 +728,7 @@ const USP = () => {
                 실수해도 괜찮아요<br />사고 걱정 ZERO
               </h3>
               <p className="text-gray-300 text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                교통사고 걱정 없이 마음껏 실수하며 진짜 실력을 키우세요.
+                교통사고 걱정 없이 마음껏 실수하며<br />진짜 실력을 키우세요.
               </p>
             </div>
           </motion.div>
@@ -758,7 +758,7 @@ const USP = () => {
                 풀 한 포기, 흔들림까지<br />그대로 재현
               </h3>
               <p className="text-gray-300 text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                전국 시험장을 완벽하게 구현하고 모션 베이스로 현장감까지!
+                전국 시험장을 완벽하게 구현하고<br />모션 베이스로 현장감까지!
               </p>
             </div>
           </motion.div>
