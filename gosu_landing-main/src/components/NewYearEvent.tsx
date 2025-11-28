@@ -24,9 +24,12 @@ const NewYearEvent = () => {
                             2025년 새해 맞이 특별 이벤트
                         </span>
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 break-keep font-hakgyoansim leading-tight">
-                            올해는 기필코 <span className="text-brand-yellow">면허 취득!</span><br />
+                            새해에는 나도 <span className="text-brand-yellow">뚜벅이 탈출!</span><br />
                             <span className="text-gray-400 text-2xl md:text-3xl font-normal mt-2 block">망설임은 비용만 높일 뿐입니다.</span>
                         </h2>
+                        <p className="text-status-red/90 text-sm md:text-base font-medium bg-status-red/10 inline-block px-4 py-2 rounded-lg border border-status-red/20">
+                            ※ 본 이벤트는 이 페이지를 통해 예약하신 분들께만 제공되는 단독 혜택입니다.
+                        </p>
                     </motion.div>
                 </div>
 
@@ -72,7 +75,7 @@ const NewYearEvent = () => {
                             </li>
                             <li className="flex items-start gap-2 text-gray-300 text-sm">
                                 <Check size={16} className="text-blue-400 mt-0.5 shrink-0" />
-                                <span>전문 강사의 1:1 피드백</span>
+                                <span>고수 매니저의 1:1 피드백</span>
                             </li>
                         </ul>
 
@@ -131,7 +134,7 @@ const NewYearEvent = () => {
                         </ul>
 
                         <a
-                            href="https://pf.kakao.com/_hxlxnIs"
+                            href="https://pcmap.place.naver.com/place/38729351/ticket"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-full flex items-center justify-center gap-2 bg-brand-yellow hover:bg-yellow-400 text-brand-black font-bold py-4 rounded-xl transition-colors shadow-lg"
