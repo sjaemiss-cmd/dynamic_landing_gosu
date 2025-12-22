@@ -1,20 +1,51 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, AnimatePresence, useSpring, useMotionValue } from "framer-motion";
-import { Phone, Star, ArrowRight, Menu, X, MapPin, Award, Users, ShieldCheck, Monitor } from "lucide-react";
+import { Phone, Star, ArrowRight, Menu, X, MapPin, Award, Users, ShieldCheck, Monitor, Clock } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { landingData } from "@/data/landingData";
 import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 
 // Dynamic Imports
 const ReviewModal = dynamic(() => import("@/components/ReviewModal"), { ssr: false });
+const SocialProof = dynamic(() => import("@/components/SocialProof"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const LocationSection = dynamic(() => import("@/components/LocationSection"));
-const StudentEvent = dynamic(() => import("@/components/StudentEvent"));
+// const StudentEvent = dynamic(() => import("@/components/StudentEvent"));
 const NewYearEvent = dynamic(() => import("@/components/NewYearEvent"));
 const Footer = dynamic(() => import("@/components/Footer"));
 const FloatingCTA = dynamic(() => import("@/components/FloatingCTA"), { ssr: false });
+const Curriculum = dynamic(() => import("@/components/Curriculum"));
+const Offer = dynamic(() => import("@/components/Offer"));
+const TypeSwitcher = dynamic(() => import("@/components/TypeSwitcher"), { ssr: false });
+
+// Speed Components
+const SpeedHero = dynamic(() => import("@/components/speed/SpeedHero"));
+const SpeedProblem = dynamic(() => import("@/components/speed/SpeedProblem"));
+const SpeedCurriculum = dynamic(() => import("@/components/speed/SpeedCurriculum"));
+const SpeedCTA = dynamic(() => import("@/components/speed/SpeedCTA"));
+const LicenseDDayCalculator = dynamic(() => import("@/components/speed/LicenseDDayCalculator"), { ssr: false });
+
+// Skill Components
+const SkillHero = dynamic(() => import("@/components/skill/SkillHero"));
+const SkillProblem = dynamic(() => import("@/components/skill/SkillProblem"));
+const SkillCurriculum = dynamic(() => import("@/components/skill/SkillCurriculum"));
+const SkillCTA = dynamic(() => import("@/components/skill/SkillCTA"));
+
+// Phobia Components
+const PhobiaHero = dynamic(() => import("@/components/phobia/PhobiaHero"), { ssr: false });
+const PhobiaProblem = dynamic(() => import("@/components/phobia/PhobiaProblem"), { ssr: false });
+const PhobiaCurriculum = dynamic(() => import("@/components/phobia/PhobiaCurriculum"), { ssr: false });
+const PhobiaCTA = dynamic(() => import("@/components/phobia/PhobiaCTA"), { ssr: false });
+
+// Practice Components
+const PracticeHero = dynamic(() => import("@/components/practice/PracticeHero"), { ssr: false });
+const PracticeProblem = dynamic(() => import("@/components/practice/PracticeProblem"), { ssr: false });
+const PracticeCurriculum = dynamic(() => import("@/components/practice/PracticeCurriculum"), { ssr: false });
+const PracticeCTA = dynamic(() => import("@/components/practice/PracticeCTA"), { ssr: false });
 
 
 
@@ -182,7 +213,7 @@ const Header = () => {
 };
 
 // 2. Hero Section
-const Hero = () => {
+const Hero = ({ data, theme }: { data: any, theme: string }) => {
   return (
     <section className="relative min-h-screen flex items-center pt-24 pb-12 md:pt-40 md:pb-32 overflow-hidden">
       {/* Background Image */}
@@ -204,61 +235,40 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block px-4 py-1.5 bg-brand-yellow/20 text-brand-yellow text-sm md:text-base font-bold rounded-full mb-6 border border-brand-yellow/30 backdrop-blur-sm">
-              노원·도봉지역 운전면허 합격률 1위
+            <span
+              className="inline-block px-4 py-1.5 text-sm md:text-base font-bold rounded-full mb-6 border backdrop-blur-sm"
+              style={{
+                backgroundColor: `${theme}33`, // 20% opacity
+                color: theme,
+                borderColor: `${theme}4d` // 30% opacity
+              }}
+            >
+              {data.badge}
             </span>
-            <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-white mb-8 break-keep tracking-tight font-hakgyoansim">
-              <motion.span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-[length:200%_auto]"
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-              >
-                운전면허,
-              </motion.span>
-              <br />
-              <motion.span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-[length:200%_auto]"
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: 0.5 }}
-              >
-                비용은{" "}
-              </motion.span>
-              <motion.span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow via-yellow-300 to-yellow-500 bg-[length:200%_auto]"
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              >
-                가볍게
-              </motion.span>
-              <br className="md:hidden" />{" "}
-              <motion.span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-[length:200%_auto]"
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: 1 }}
-              >
-                실력은{" "}
-              </motion.span>
-              <motion.span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow via-yellow-300 to-yellow-500 bg-[length:200%_auto]"
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 0.5 }}
-              >
-                확실하게
-              </motion.span>
-            </h1>
-            <p className="text-gray-300 text-lg md:text-2xl mb-10 leading-relaxed break-keep max-w-3xl mx-auto">
-              {/* Mobile version */}
-              <span className="md:hidden">
-                불합격할 때마다 추가되는 비용과 시간.<br />
-                &nbsp;고수의 운전면허에서 <br /><strong className="text-brand-yellow">합리적 비용으로 한번에</strong> 합격하세요.
-              </span>
-              {/* Desktop version */}
-              <span className="hidden md:inline">
-                불합격할 때마다 추가되는 비용과 시간<br />
-                고수의 운전면허에서<br />
-                <strong className="text-brand-yellow">합리적 비용으로 한번에</strong> 합격하세요.
-              </span>
-            </p>
+            <h1
+              className="text-5xl md:text-7xl font-extrabold leading-tight text-white mb-8 break-keep tracking-tight font-hakgyoansim"
+              dangerouslySetInnerHTML={{ __html: data.title }}
+            />
+
+            <p
+              className="text-gray-300 text-lg md:text-2xl mb-10 leading-relaxed break-keep max-w-3xl mx-auto"
+              dangerouslySetInnerHTML={{ __html: data.subtitle }}
+            />
+
+            <motion.a
+              href="#offer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              style={{
+                backgroundColor: theme,
+                color: theme === '#FECE48' ? '#000' : '#FFF',
+                boxShadow: `0 0 20px ${theme}66`
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {data.ctaText}
+              <ArrowRight size={20} />
+            </motion.a>
           </motion.div>
         </div>
       </div>
@@ -446,24 +456,20 @@ const CostCalculator = () => {
 };
 
 // 4. USP (Unique Selling Proposition)
-const USP = () => {
+const USP = ({ data, theme }: { data: any, theme: string }) => {
   const stationVideoRef = React.useRef<HTMLVideoElement>(null);
   const accidentVideoRef = React.useRef<HTMLVideoElement>(null);
   const realisticVideoRef = React.useRef<HTMLVideoElement>(null);
   const celebVideoRef = React.useRef<HTMLVideoElement>(null);
 
   // State for Realistic Card Playlist
-  // 'function' -> plays function.mp4
-  // 'motion' -> plays motion.mp4
   const [realisticVideoSrc, setRealisticVideoSrc] = useState<'/function.mp4' | '/motion.mp4'>('/function.mp4');
 
-  // 1. Station Video: 2x speed + Trim last 5s
+  // Video effects logic (kept same as before)
   useEffect(() => {
     const stationVideo = stationVideoRef.current;
     if (!stationVideo) return;
-
     stationVideo.playbackRate = 2.0;
-
     const handleStationTimeUpdate = () => {
       if (stationVideo.duration) {
         const endTime = Math.max(0, stationVideo.duration - 5);
@@ -473,140 +479,144 @@ const USP = () => {
         }
       }
     };
-
     stationVideo.addEventListener('timeupdate', handleStationTimeUpdate);
-
-    return () => {
-      stationVideo.removeEventListener('timeupdate', handleStationTimeUpdate);
-    };
+    return () => stationVideo.removeEventListener('timeupdate', handleStationTimeUpdate);
   }, []);
 
-  // 2. Accident Video: Loop last 15 seconds
   useEffect(() => {
     const accidentVideo = accidentVideoRef.current;
     if (!accidentVideo) return;
-
     const handleTimeUpdate = () => {
-      // Ensure we have duration
       if (accidentVideo.duration) {
         const startTime = Math.max(0, accidentVideo.duration - 15);
-
-        // If we are before the start time (e.g. on first load), jump to it
-        if (accidentVideo.currentTime < startTime) {
-          accidentVideo.currentTime = startTime;
-        }
-
-        // If we reach the end, loop back to start time
+        if (accidentVideo.currentTime < startTime) accidentVideo.currentTime = startTime;
         if (accidentVideo.ended || accidentVideo.currentTime >= accidentVideo.duration) {
           accidentVideo.currentTime = startTime;
           accidentVideo.play();
         }
       }
     };
-
-    // Initial setup when metadata loads
     const handleLoadedMetadata = () => {
-      if (accidentVideo.duration) {
-        accidentVideo.currentTime = Math.max(0, accidentVideo.duration - 15);
-      }
+      if (accidentVideo.duration) accidentVideo.currentTime = Math.max(0, accidentVideo.duration - 15);
     };
-
     accidentVideo.addEventListener('timeupdate', handleTimeUpdate);
     accidentVideo.addEventListener('loadedmetadata', handleLoadedMetadata);
-
     return () => {
       accidentVideo.removeEventListener('timeupdate', handleTimeUpdate);
       accidentVideo.removeEventListener('loadedmetadata', handleLoadedMetadata);
     };
   }, []);
 
-  // 3. Realistic Video Logic (Playlist + Trimming)
   useEffect(() => {
     const video = realisticVideoRef.current;
     if (!video) return;
-
-    // Always 2x speed for both videos
     video.playbackRate = 2.0;
-
     const handleTimeUpdate = () => {
       if (!video.duration) return;
-
       if (realisticVideoSrc === '/motion.mp4') {
-        // motion.mp4: Start at 10s, End at duration - 10s
         const startTime = 10;
         const endTime = Math.max(10, video.duration - 10);
-
-        // Enforce start time
-        if (video.currentTime < startTime) {
-          video.currentTime = startTime;
-        }
-
-        // Check for end
-        if (video.currentTime >= endTime) {
-          // Switch back to function.mp4
-          setRealisticVideoSrc('/function.mp4');
-        }
+        if (video.currentTime < startTime) video.currentTime = startTime;
+        if (video.currentTime >= endTime) setRealisticVideoSrc('/function.mp4');
       } else {
-        // function.mp4: Play until duration - 10s, then switch
         const endTime = Math.max(0, video.duration - 10);
-        if (video.currentTime >= endTime) {
-          setRealisticVideoSrc('/motion.mp4');
-        }
+        if (video.currentTime >= endTime) setRealisticVideoSrc('/motion.mp4');
       }
     };
-
     const handleLoadedMetadata = () => {
-      // When motion.mp4 loads, jump to 10s
-      if (realisticVideoSrc === '/motion.mp4') {
-        video.currentTime = 10;
-      }
-      // Ensure speed is set every time source changes
+      if (realisticVideoSrc === '/motion.mp4') video.currentTime = 10;
       video.playbackRate = 2.0;
       video.play().catch(() => { });
     };
-
     video.addEventListener('timeupdate', handleTimeUpdate);
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
-
     return () => {
       video.removeEventListener('timeupdate', handleTimeUpdate);
       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
     };
   }, [realisticVideoSrc]);
 
-  // 4. Intersection Observer for Lazy Loading & Auto-Pause
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
     const handleIntersect = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
         const video = entry.target as HTMLVideoElement;
-        if (entry.isIntersecting) {
-          // Play when visible
-          video.play().catch(() => { });
-        } else {
-          // Pause when not visible
-          video.pause();
-        }
+        if (entry.isIntersecting) video.play().catch(() => { });
+        else video.pause();
       });
     };
-
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
-
     if (stationVideoRef.current) observer.observe(stationVideoRef.current);
     if (accidentVideoRef.current) observer.observe(accidentVideoRef.current);
     if (realisticVideoRef.current) observer.observe(realisticVideoRef.current);
     if (celebVideoRef.current) observer.observe(celebVideoRef.current);
+    return () => observer.disconnect();
+  }, [realisticVideoSrc]);
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [realisticVideoSrc]); // Re-attach if src changes (though refs usually stable, realistic src changes)
+  // If we have features (Speed/Skill), render the feature list
+  if (data.features && data.features.length > 0) {
+    return (
+      <section id="usp" className="min-h-screen flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-20 bg-brand-black">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 md:mb-16">
+            <h2
+              className="text-3xl md:text-5xl font-bold text-white mb-6 break-keep font-hakgyoansim"
+              dangerouslySetInnerHTML={{ __html: data.title }}
+            />
+            <p
+              className="text-gray-400 text-lg break-keep"
+              dangerouslySetInnerHTML={{ __html: data.subtitle }}
+            />
+          </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {data.features.map((feature: any, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={cn(
+                  "rounded-3xl p-8 md:p-10 flex flex-col justify-between min-h-[320px] border transition-all duration-300",
+                  feature.highlight
+                    ? "bg-gray-900 border-2"
+                    : "bg-gray-900/50 border-gray-800 hover:border-gray-700"
+                )}
+                style={{
+                  borderColor: feature.highlight ? theme : undefined,
+                  boxShadow: feature.highlight ? `0 0 30px -10px ${theme}33` : undefined
+                }}
+              >
+                <div>
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
+                    style={{ backgroundColor: feature.highlight ? theme : '#1f2937' }}
+                  >
+                    {/* Icon placeholder logic - can be expanded */}
+                    {feature.icon === 'clock' && <Clock className="w-8 h-8" style={{ color: feature.highlight ? '#000' : theme }} />}
+                    {feature.icon === 'shield' && <ShieldCheck className="w-8 h-8" style={{ color: feature.highlight ? '#000' : theme }} />}
+                    {feature.icon === 'check' && <Award className="w-8 h-8" style={{ color: feature.highlight ? '#000' : theme }} />}
+                    {feature.icon === 'monitor' && <Monitor className="w-8 h-8" style={{ color: feature.highlight ? '#000' : theme }} />}
+                    {!feature.icon && <Star className="w-8 h-8" style={{ color: feature.highlight ? '#000' : theme }} />}
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4 break-keep font-hakgyoansim">
+                    {feature.title}
+                  </h3>
+                  <p
+                    className="text-gray-400 leading-relaxed break-keep"
+                    dangerouslySetInnerHTML={{ __html: feature.description }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Default USP (Cost/Original) - Video Grid
   return (
     <section id="usp" className="min-h-screen flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-20 bg-brand-black">
       <div className="container mx-auto px-4">
@@ -792,270 +802,7 @@ const USP = () => {
   );
 };
 
-// 5. Social Proof (Infinite Marquee)
-
-
-const SocialProof = () => {
-  // Fallback static reviews (used when API fails)
-  const staticReviews = [
-    {
-      id: 0,
-      image: "https://gosudriving.com/data/files/54cc00e6732898f04cf10407e5063c83.jpg",
-      text: "정말 너무 친절하시고 세세하게 알려주십니다!어려웠던 부분도 강사님들 덕분에 다시 이해하고시험 합격할 수 있었습니다 ㅎㅎ가성비 대비해서 정말 강추드립니다시뮬로도 충분히 면허합격 가능합니다!",
-      name: "이*준",
-      date: "2025-11-28"
-    },
-    {
-      id: 1,
-      image: "https://gosudriving.com/data/files/3b70da72807195e67dd4f61e22b0c5d1.jpg",
-      text: "전에 했던 경험이 있는 채로 왔었는데, 잘 상기시켜주셔서 일주일 조금 넘게 지나 합격까지 했습니다! 면허시험장과 너무 가까워서 좋고 모르는 점이나 헷갈리는 점도 잘 알려주셔서 편하게 합격할 수 있던것 같아요!",
-      name: "김*하",
-      date: "2025-11-28"
-    },
-    {
-      id: 2,
-      image: "https://gosudriving.com/data/files/99196b4682b37e1fbb5d91dd50b6eec1.jpg",
-      text: "면허 땄어요. 기분이 너무 좋네요",
-      name: "김*화",
-      date: "2025-11-07"
-    },
-    {
-      id: 3,
-      image: "https://gosudriving.com/data/files/9bff5922d928a1d43c9e49f0130657e3.jpg",
-      text: "친절한 강사님 덕분에 빠르게 면허 딸 수 있었습니다!! 정말 좋으니까 와보시는 거 추천드려요!!",
-      name: "김*윤",
-      date: "2025-11-07"
-    },
-    {
-      id: 4,
-      image: "https://gosudriving.com/data/files/ac2a02a5810d8428e0257c14c67f8ccd.jpg",
-      text: "선생님의 좋은 지도 덕분에 면허 합격했습니다 !!! 면허 합격 이후에도 주차 알려주셔서 너무 좋은 것 같아요! 그동안 감사했습니다~~~",
-      name: "박*현",
-      date: "2025-11-07"
-    },
-    {
-      id: 5,
-      image: "https://gosudriving.com/data/files/a3fb1491e02bc3b049fcaed792ad14ac.webp",
-      text: "운전이 무서우면 고수운전학원 2주면 합격 50대후반 합격햇네요 화이팅감사합니다",
-      name: "서*원",
-      date: "2025-11-07"
-    },
-    {
-      id: 6,
-      image: "https://gosudriving.com/data/files/89dde8c23f9dfba95b2de557e7840afd.jpg",
-      text: "시뮬레이션이 실제로 차로 운전하는거랑 비슷해요! 브레이크 감도 바꿀수 있는점도 너무 좋고 코스 그대로 나와있어서 익히기 좋아요! 선생님들도 다 친절하시고 설명 잘하십니다 추천해요!!",
-      name: "김*아",
-      date: "2025-11-01"
-    },
-    {
-      id: 7,
-      image: "https://gosudriving.com/data/files/6a7f68077417836a0690f3c82c8b0dd7.jpg",
-      text: "시뮬레이션으로도 충분히 실제 차랑 비슷해서 연습하기 좋았습니다. 덕분에 기능 도로주행 둘 다 한 번에 합격했어요! 감사합니다☺️❤️",
-      name: "이*혜",
-      date: "2025-11-01"
-    }
-  ];
-
-  const [reviews, setReviews] = useState(staticReviews);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedReview, setSelectedReview] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch('/api/reviews');
-        const data = await response.json();
-
-        if (data.success && data.reviews && data.reviews.length > 0) {
-          setReviews(data.reviews);
-          setError(null);
-        } else {
-          // Use fallback data if API returns no reviews
-          console.warn('No reviews from API, using fallback data');
-          setReviews(staticReviews);
-        }
-      } catch (err) {
-        console.error('Failed to fetch reviews:', err);
-        setError('리뷰를 불러오는데 실패했습니다. 기본 리뷰를 표시합니다.');
-        // Keep using static reviews on error
-        setReviews(staticReviews);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchReviews();
-  }, []);
-
-  // Auto-scroll logic
-  const scrollRef = React.useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer || isLoading) return;
-
-    let animationFrameId: number;
-    let scrollSpeed = 1; // Pixels per frame
-
-    const scroll = () => {
-      if (!isPaused && scrollContainer) {
-        scrollContainer.scrollLeft += scrollSpeed;
-
-        // Infinite scroll reset
-        // We assume the content is duplicated (reviews + reviews)
-        // When we reach halfway (end of first set), reset to 0
-        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
-          scrollContainer.scrollLeft = 0;
-        }
-      }
-      animationFrameId = requestAnimationFrame(scroll);
-    };
-
-    animationFrameId = requestAnimationFrame(scroll);
-
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isPaused, isLoading, reviews]);
-
-  return (
-    <section id="reviews" className="min-h-screen flex flex-col justify-center pt-24 pb-12 md:pt-32 md:pb-20 bg-brand-black overflow-hidden">
-      <div className="container mx-auto px-4 mb-12 md:mb-20 text-center relative">
-        {/* Spotlight Effect Removed */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="relative z-10"
-        >
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 break-keep tracking-tight leading-tight font-hakgyoansim">
-            이미{" "}
-            <span className="relative inline-block">
-              {/* Glow behind text */}
-              <span className="absolute inset-0 bg-brand-yellow/30 blur-2xl rounded-full"></span>
-              <motion.span
-                className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FFFACD] to-[#FFD700] bg-[length:200%_auto] text-4xl md:text-6xl"
-                animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                style={{ textShadow: "0 0 20px rgba(254, 206, 72, 0.3)" }}
-              >
-                수많은 합격자
-              </motion.span>
-            </span>
-            가<br className="md:hidden" /> 증명합니다
-          </h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-gray-300 text-lg md:text-xl break-keep"
-          >
-            도봉점 실제 수강생들의 <span className="text-white font-bold border-b border-brand-yellow/50 pb-0.5">생생한 합격 인증</span>
-          </motion.p>
-        </motion.div>
-
-        {error && (
-          <p className="text-gray-500 text-sm mt-4 relative z-10">
-            {error}
-          </p>
-        )}
-      </div>
-
-      <div className="relative flex w-full mb-12">
-        {isLoading ? (
-          // Loading skeleton
-          <div className="flex gap-6 whitespace-nowrap overflow-hidden px-4">
-            {[...Array(4)].map((_, index) => (
-              <div
-                key={index}
-                className="w-64 h-80 md:w-80 md:h-96 flex-shrink-0 bg-gray-800 rounded-xl overflow-hidden animate-pulse"
-              >
-                <div className="w-full h-full bg-gray-700"></div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          // Swipeable Reviews
-          <div
-            ref={scrollRef}
-            className="flex gap-6 overflow-x-auto no-scrollbar px-4 pb-4"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            onTouchStart={() => setIsPaused(true)}
-            onTouchEnd={() => setIsPaused(false)}
-          >
-            {/* Duplicate reviews for infinite scroll effect */}
-            {[...reviews, ...reviews, ...reviews].map((review, index) => (
-              <div
-                key={`${review.id}-${index}`}
-                onClick={() => setSelectedReview(review)}
-                className="w-64 h-80 md:w-80 md:h-96 flex-shrink-0 bg-gray-800 rounded-xl overflow-hidden relative group cursor-pointer border border-transparent hover:border-brand-yellow/50 transition-all duration-300 snap-center"
-              >
-                <img
-                  src={review.image}
-                  alt={review.text}
-                  className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                  draggable={false}
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-12">
-                  <div className="flex justify-between items-end mb-1">
-                    <span className="text-brand-yellow font-bold text-sm">{review.name}</span>
-                    <span className="text-gray-400 text-xs">{review.date}</span>
-                  </div>
-                  <p className="text-white text-sm font-medium line-clamp-2">{review.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      <div className="text-center">
-        <a
-          href="https://pcmap.place.naver.com/place/38729351/review?additionalHeight=76&entry=plt&fromPanelNum=1&locale=ko&svcName=map_pcv5&timestamp=202511240203"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-transparent border-2 border-brand-yellow text-brand-yellow px-8 py-3 rounded-full font-bold hover:bg-brand-yellow hover:text-brand-black transition-all duration-300"
-        >
-          더 많은 생생한 후기 보러가기 <ArrowRight size={20} />
-        </a>
-      </div>
-
-      <AnimatePresence>
-        {selectedReview && (
-          <ReviewModal
-            review={selectedReview}
-            onClose={() => setSelectedReview(null)}
-          />
-        )}
-      </AnimatePresence>
-    </section >
-  );
-};
-
-// 5.5 Rolling Number Component
-
-
-// 6. Student Discount Event (FOMO)
-
-
-// 6.5 Location Section (New)
-
-
-// 7. FAQ
-
-
-// 7. Floating CTA
-
-
-// 8. Footer
-
-
-export default function Home() {
+function LandingPageContent() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -1063,28 +810,96 @@ export default function Home() {
     restDelta: 0.001
   });
 
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type") || "cost";
+  const content = landingData[type] || landingData["cost"];
+  const theme = content.theme || "#FECE48";
+
   return (
     <main className="min-h-screen bg-brand-black font-sans text-white selection:bg-brand-yellow selection:text-brand-black overflow-x-hidden relative">
       {/* Scroll Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-brand-yellow origin-left z-[100]"
-        style={{ scaleX }}
+        className="fixed top-0 left-0 right-0 h-1 origin-left z-[100]"
+        style={{ scaleX, backgroundColor: theme }}
       />
 
       <div className="relative z-10">
         <Header />
-        <Hero />
-        <CostCalculator />
-        <USP />
-        <SocialProof />
-        <LocationSection />
+        <TypeSwitcher />
+
+        {type === 'speed' ? (
+          // Speed Layout
+          <>
+            <SpeedHero />
+            <LicenseDDayCalculator />
+            <SpeedProblem />
+            <SpeedCurriculum />
+            <SpeedCTA />
+          </>
+        ) : type === 'skill' ? (
+          // Skill Layout
+          <>
+            <SkillHero />
+            <SkillProblem />
+            <SkillCurriculum />
+            <SkillCTA />
+          </>
+        ) : type === 'phobia' ? (
+          // Phobia Layout
+          <>
+            <PhobiaHero />
+            <PhobiaProblem />
+            <PhobiaCurriculum />
+            <PhobiaCTA />
+          </>
+        ) : type === 'practice' ? (
+          // Practice Layout
+          <>
+            <PracticeHero />
+            <PracticeProblem />
+            <PracticeCurriculum />
+            <PracticeCTA />
+          </>
+        ) : (
+          // Default / Cost Layout
+          <>
+            <Hero data={content.hero} theme={theme} />
+            {/* Only show CostCalculator for 'cost' type or if it's the default */}
+            {type === 'cost' && <CostCalculator />}
+
+            <USP data={content.problem} theme={theme} />
+
+            {/* Dynamic Sections */}
+            <Curriculum
+              title={content.curriculum.title}
+              steps={content.curriculum.steps}
+              theme={theme}
+            />
+            <Offer
+              offer={content.offer}
+              theme={theme}
+            />
+          </>
+        )}
+
+        {/* Shared Sections */}
+        <SocialProof theme={theme} />
+        <LocationSection theme={theme} />
         {/* Event Section */}
-        <StudentEvent />
-        <NewYearEvent />
-        <FAQ />
-        <Footer />
-        <FloatingCTA />
+        {/* <StudentEvent /> */}
+        <NewYearEvent theme={theme} />
+        <FAQ theme={theme} />
+        <Footer theme={theme} />
+        <FloatingCTA theme={theme} />
       </div>
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-brand-black flex items-center justify-center text-white">Loading...</div>}>
+      <LandingPageContent />
+    </Suspense>
   );
 }

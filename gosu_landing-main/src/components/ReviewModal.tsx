@@ -7,9 +7,10 @@ import { X } from "lucide-react";
 interface ReviewModalProps {
     review: any;
     onClose: () => void;
+    theme?: string;
 }
 
-const ReviewModal = ({ review, onClose }: ReviewModalProps) => {
+const ReviewModal = ({ review, onClose, theme = "#FECE48" }: ReviewModalProps) => {
     if (!review) return null;
 
     return (
@@ -38,7 +39,7 @@ const ReviewModal = ({ review, onClose }: ReviewModalProps) => {
                     </div>
                     <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col">
                         <div className="flex justify-between items-center mb-4">
-                            <span className="text-brand-yellow font-bold text-lg">{review.name}</span>
+                            <span className="font-bold text-lg" style={{ color: theme }}>{review.name}</span>
                             <span className="text-gray-400 text-sm">{review.date}</span>
                         </div>
                         <div className="flex-grow overflow-y-auto">

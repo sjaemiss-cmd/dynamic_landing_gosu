@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 
-const Footer = () => {
+const Footer = ({ theme = "#FECE48" }: { theme?: string }) => {
     return (
         <footer className="bg-gray-900 py-12 text-gray-400 text-sm">
             <div className="container mx-auto px-4 text-center md:text-left">
@@ -32,7 +32,7 @@ const Footer = () => {
                     {/* 고객센터 영역: 이제 그리드가 1열이 되므로 text-center만 있어도 중앙으로 옵니다 */}
                     <div className="text-center md:text-center">
                         <h4 className="font-bold text-white mb-4">고객센터</h4>
-                        <p className="font-bold text-lg text-white mb-2">02-930-9394</p>
+                        <p className="font-bold text-lg mb-2" style={{ color: theme }}>02-930-9394</p>
                         <p>평일 09:00 - 21:00<br />토요일 10:00 - 18:00<br />일요일 휴무</p>
                     </div>
                 </div>

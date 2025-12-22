@@ -5,13 +5,13 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { MapPin, Check, Clock, ArrowRight } from "lucide-react";
 
-const LocationSection = () => {
+const LocationSection = ({ theme = "#FECE48" }: { theme?: string }) => {
     return (
         <section id="location" className="pt-24 pb-12 md:pt-32 md:pb-20 bg-brand-black">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-8 md:mb-16">
                     <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 break-keep font-hakgyoansim">
-                        <span className="text-brand-yellow">노원역 3번 출구</span>에서<br className="md:hidden" /> 걸어서 <span className="text-brand-yellow">단 2분</span>
+                        <span style={{ color: theme }}>노원역 3번 출구</span>에서<br className="md:hidden" /> 걸어서 <span style={{ color: theme }}>단 2분</span>
                     </h2>
                     <p className="text-gray-400 break-keep">더 이상 멀리 다니지 마세요. 역세권 최고의 접근성!</p>
                 </div>
@@ -60,8 +60,8 @@ const LocationSection = () => {
                     >
                         <div className="space-y-8">
                             <div className="flex items-start gap-4">
-                                <div className="bg-brand-yellow/10 p-3 rounded-full">
-                                    <MapPin className="text-brand-yellow" size={24} />
+                                <div className="p-3 rounded-full" style={{ backgroundColor: `${theme}1a` }}>
+                                    <MapPin size={24} style={{ color: theme }} />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-white mb-2 font-hakgyoansim">편하게 걸어올 위치</h3>
@@ -73,22 +73,22 @@ const LocationSection = () => {
                             </div>
 
                             <div className="flex items-start gap-4">
-                                <div className="bg-brand-yellow/10 p-3 rounded-full">
-                                    <Check className="text-brand-yellow" size={24} />
+                                <div className="p-3 rounded-full" style={{ backgroundColor: `${theme}1a` }}>
+                                    <Check size={24} style={{ color: theme }} />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-white mb-2 font-hakgyoansim">시험장과 가까운 거리</h3>
                                     <p className="text-gray-400 leading-relaxed">
                                         <strong className="text-white">도봉운전면허시험장</strong>까지<br />
-                                        도보로 <strong className="text-brand-yellow">단 2분</strong> 거리입니다.<br />
+                                        도보로 <strong style={{ color: theme }}>단 2분</strong> 거리입니다.<br />
                                         연습 후 바로 시험 보러 가기 최적의 위치!
                                     </p>
                                 </div>
                             </div>
 
                             <div className="flex items-start gap-4">
-                                <div className="bg-brand-yellow/10 p-3 rounded-full">
-                                    <Clock className="text-brand-yellow" size={24} />
+                                <div className="p-3 rounded-full" style={{ backgroundColor: `${theme}1a` }}>
+                                    <Clock size={24} style={{ color: theme }} />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-white mb-2 font-hakgyoansim">편리한 방문</h3>

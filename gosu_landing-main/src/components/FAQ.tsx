@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp, ChevronDown } from "lucide-react";
 
-const FAQ = () => {
+const FAQ = ({ theme = "#FECE48" }: { theme?: string }) => {
     const faqs = [
         {
             q: "정말 시뮬레이터로 연습해도 합격할 수 있나요?",
@@ -44,13 +44,20 @@ const FAQ = () => {
 
                 <div className="space-y-4">
                     {faqs.map((faq, index) => (
-                        <div key={index} className="border border-gray-800 rounded-xl overflow-hidden">
+                        <div
+                            key={index}
+                            className="border rounded-xl overflow-hidden transition-colors duration-300"
+                            style={{ borderColor: openIndex === index ? theme : 'rgba(31, 41, 55, 1)' }}
+                        >
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                                 className="w-full flex justify-between items-center p-6 bg-gray-900 hover:bg-gray-800 transition-colors text-left"
                             >
                                 <span className="font-bold text-lg text-white break-keep pr-4">{faq.q}</span>
-                                {openIndex === index ? <ChevronUp className="text-gray-400 flex-shrink-0" /> : <ChevronDown className="text-gray-400 flex-shrink-0" />}
+                                {openIndex === index ?
+                                    <ChevronUp className="flex-shrink-0" style={{ color: theme }} /> :
+                                    <ChevronDown className="text-gray-400 flex-shrink-0" />
+                                }
                             </button>
                             <AnimatePresence>
                                 {openIndex === index && (

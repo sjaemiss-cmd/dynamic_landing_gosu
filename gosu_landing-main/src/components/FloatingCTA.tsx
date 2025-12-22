@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const FloatingCTA = () => {
+const FloatingCTA = ({ theme = "#FECE48" }: { theme?: string }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -39,9 +39,13 @@ const FloatingCTA = () => {
                         href="https://pf.kakao.com/_hxlxnIs"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 md:flex-none w-full md:w-auto bg-brand-yellow text-brand-black font-bold text-lg py-4 px-6 rounded-xl shadow-xl hover:bg-yellow-400 transition-colors text-center flex items-center justify-center gap-2 relative"
+                        className="flex-1 md:flex-none w-full md:w-auto text-black font-bold text-lg py-4 px-6 rounded-xl shadow-xl hover:brightness-110 transition-all text-center flex items-center justify-center gap-2 relative"
+                        style={{ backgroundColor: theme }}
                     >
-                        <span className="bg-brand-black text-brand-yellow text-xs px-2 py-0.5 rounded-full absolute -top-3 left-1/2 md:left-auto md:right-4 transform -translate-x-1/2 md:translate-x-0 animate-bounce whitespace-nowrap">
+                        <span
+                            className="bg-black text-xs px-2 py-0.5 rounded-full absolute -top-3 left-1/2 md:left-auto md:right-4 transform -translate-x-1/2 md:translate-x-0 animate-bounce whitespace-nowrap"
+                            style={{ color: theme }}
+                        >
                             상담 무료!
                         </span>
                         <span className="font-extrabold">K</span>
