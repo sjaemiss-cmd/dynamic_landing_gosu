@@ -31,13 +31,13 @@ const SpeedHero = () => {
                         </div>
 
                         <h1 className="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-8 font-hakgyoansim italic">
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">1 WEEK</span><br />
-                            <span className="text-red-600">OR NOTHING</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 text-5xl md:text-7xl">3일 완성의 진실,</span><br />
+                            <span className="text-red-600 text-5xl md:text-7xl">폭로합니다.</span>
                         </h1>
 
                         <p className="text-gray-400 text-xl md:text-2xl mb-10 leading-relaxed max-w-lg font-medium">
-                            남들 3주 걸릴 때, <br />
-                            <span className="text-white font-bold border-b-2 border-red-600">딱 1주일</span>만에 끝냅니다.
+                            왜 당신만 계속 떨어질까요? <br />
+                            <span className="text-white font-bold border-b-2 border-red-600">가장 빠른 합격</span>은 '가장 많이 연습하는 것'뿐입니다.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4">

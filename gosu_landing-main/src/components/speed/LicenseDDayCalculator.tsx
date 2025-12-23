@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Clock, CheckCircle2, AlertCircle, ArrowRight } from "lucide-react";
+import { Clock, CheckCircle2, ArrowRight } from "lucide-react";
 import { landingData } from "@/data/landingData";
 
 const LicenseDDayCalculator = () => {
@@ -83,12 +83,12 @@ const LicenseDDayCalculator = () => {
                                     <button
                                         key={item.id}
                                         onClick={() => {
-                                            setStatus(item.id as any);
+                                            setStatus(item.id as "beginner" | "written" | "function");
                                             setShowResult(false);
                                         }}
                                         className={`w-full p-4 rounded-xl text-left font-bold transition-all border ${status === item.id
-                                                ? `bg-gray-800 text-white border-[${theme}]`
-                                                : "bg-gray-800/50 text-gray-500 border-transparent hover:bg-gray-800"
+                                            ? `bg-gray-800 text-white border-[${theme}]`
+                                            : "bg-gray-800/50 text-gray-500 border-transparent hover:bg-gray-800"
                                             }`}
                                         style={{
                                             borderColor: status === item.id ? theme : 'transparent',
@@ -116,12 +116,12 @@ const LicenseDDayCalculator = () => {
                                     <button
                                         key={item.val}
                                         onClick={() => {
-                                            setHours(item.val as any);
+                                            setHours(item.val as 2 | 4 | 8);
                                             setShowResult(false);
                                         }}
                                         className={`w-full p-4 rounded-xl text-left font-bold transition-all border ${hours === item.val
-                                                ? `bg-gray-800 text-white border-[${theme}]`
-                                                : "bg-gray-800/50 text-gray-500 border-transparent hover:bg-gray-800"
+                                            ? `bg-gray-800 text-white border-[${theme}]`
+                                            : "bg-gray-800/50 text-gray-500 border-transparent hover:bg-gray-800"
                                             }`}
                                         style={{
                                             borderColor: hours === item.val ? theme : 'transparent',
@@ -212,7 +212,7 @@ const LicenseDDayCalculator = () => {
                                         element?.scrollIntoView({ behavior: 'smooth' });
                                     }}
                                 >
-                                    <span>{gosuDays}일 완성반 예약하기</span>
+                                    <span>이 날짜에 합격 예약하기</span>
                                     <ArrowRight size={20} />
                                 </button>
                             </motion.div>

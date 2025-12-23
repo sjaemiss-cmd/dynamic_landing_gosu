@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 const SpeedCTA = () => {
     return (
@@ -27,6 +27,55 @@ const SpeedCTA = () => {
                         가장 빠른 합격, 지금 바로 상담하세요.
                     </p>
 
+                    {/* Value Stack */}
+                    <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 mb-12 text-left max-w-2xl mx-auto border border-white/10">
+                        <h3 className="text-xl font-bold text-white mb-6 text-center">
+                            <span className="text-red-500">1주 완성 패키지</span> 포함 내역
+                        </h3>
+                        <ul className="space-y-4">
+                            <li className="flex items-start gap-3">
+                                <div className="bg-red-600 rounded-full p-1 mt-1 shrink-0">
+                                    <Check size={12} className="text-white" strokeWidth={3} />
+                                </div>
+                                <div>
+                                    <span className="text-white font-bold">합격할 때까지 무제한 시뮬레이터</span>
+                                    <span className="block text-sm text-gray-400">추가 비용 없이 100시간이고 타세요 (50만원 상당)</span>
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <div className="bg-red-600 rounded-full p-1 mt-1 shrink-0">
+                                    <Check size={12} className="text-white" strokeWidth={3} />
+                                </div>
+                                <div>
+                                    <span className="text-white font-bold">시험장 4개 코스 완벽 분석 리포트</span>
+                                    <span className="block text-sm text-gray-400">A, B, C, D 코스별 공략집 제공 (15만원 상당)</span>
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <div className="bg-red-600 rounded-full p-1 mt-1 shrink-0">
+                                    <Check size={12} className="text-white" strokeWidth={3} />
+                                </div>
+                                <div>
+                                    <span className="text-white font-bold">1:1 밀착 약점 교정 코칭</span>
+                                    <span className="block text-sm text-gray-400">강사님이 옆에서 될 때까지 알려드립니다</span>
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <div className="bg-red-600 rounded-full p-1 mt-1 shrink-0">
+                                    <Check size={12} className="text-white" strokeWidth={3} />
+                                </div>
+                                <div>
+                                    <span className="text-white font-bold">불합격 시 추가 교육비 0원</span>
+                                    <span className="block text-sm text-gray-400">심리적 부담 없이 편안하게 연습하세요</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div className="mt-6 pt-6 border-t border-white/10 text-center">
+                            <p className="text-gray-300 text-sm mb-1">이 모든 혜택을</p>
+                            <p className="text-2xl font-bold text-white">일반 학원 <span className="text-red-500">절반 가격</span>으로</p>
+                        </div>
+                    </div>
+
                     <a
                         href="https://pf.kakao.com/_xmxnmnG/chat"
                         target="_blank"
@@ -38,7 +87,7 @@ const SpeedCTA = () => {
                     </a>
                 </motion.div>
             </div>
-        </section>
+        </section >
     );
 };
 

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Brain, Calculator, XCircle, CheckCircle } from "lucide-react";
 
 const SkillProblem = () => {
@@ -27,7 +26,7 @@ const SkillProblem = () => {
                                 <Brain size={32} />
                             </div>
                             <h3 className="text-2xl font-bold text-gray-400 mb-2">감(Feeling)으로 운전</h3>
-                            <p className="text-gray-500">"대충 이쯤에서 꺾으세요"</p>
+                            <p className="text-gray-500">&quot;대충 이쯤에서 꺾으세요&quot;</p>
                         </div>
                         <ul className="space-y-4">
                             <li className="flex items-center gap-3 text-gray-400">
@@ -57,7 +56,7 @@ const SkillProblem = () => {
                                     <Calculator size={32} />
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-2">공식(Logic)으로 운전</h3>
-                                <p className="text-blue-100">"어깨선 맞추고 핸들 1바퀴"</p>
+                                <p className="text-blue-100">&quot;어깨선 맞추고 핸들 1바퀴&quot;</p>
                             </div>
                             <ul className="space-y-4">
                                 <li className="flex items-center gap-3 text-white font-medium">

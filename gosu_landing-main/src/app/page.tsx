@@ -27,6 +27,7 @@ const SpeedHero = dynamic(() => import("@/components/speed/SpeedHero"));
 const SpeedProblem = dynamic(() => import("@/components/speed/SpeedProblem"));
 const SpeedCurriculum = dynamic(() => import("@/components/speed/SpeedCurriculum"));
 const SpeedCTA = dynamic(() => import("@/components/speed/SpeedCTA"));
+const SpeedStory = dynamic(() => import("@/components/speed/SpeedStory"), { ssr: false });
 const LicenseDDayCalculator = dynamic(() => import("@/components/speed/LicenseDDayCalculator"), { ssr: false });
 
 // Skill Components
@@ -34,18 +35,21 @@ const SkillHero = dynamic(() => import("@/components/skill/SkillHero"));
 const SkillProblem = dynamic(() => import("@/components/skill/SkillProblem"));
 const SkillCurriculum = dynamic(() => import("@/components/skill/SkillCurriculum"));
 const SkillCTA = dynamic(() => import("@/components/skill/SkillCTA"));
+const SkillDiagnosisTest = dynamic(() => import("@/components/skill/SkillDiagnosisTest"), { ssr: false });
 
 // Phobia Components
 const PhobiaHero = dynamic(() => import("@/components/phobia/PhobiaHero"), { ssr: false });
 const PhobiaProblem = dynamic(() => import("@/components/phobia/PhobiaProblem"), { ssr: false });
 const PhobiaCurriculum = dynamic(() => import("@/components/phobia/PhobiaCurriculum"), { ssr: false });
 const PhobiaCTA = dynamic(() => import("@/components/phobia/PhobiaCTA"), { ssr: false });
+const AnxietyReliefPrescription = dynamic(() => import("@/components/phobia/AnxietyReliefPrescription"), { ssr: false });
 
 // Practice Components
 const PracticeHero = dynamic(() => import("@/components/practice/PracticeHero"), { ssr: false });
 const PracticeProblem = dynamic(() => import("@/components/practice/PracticeProblem"), { ssr: false });
 const PracticeCurriculum = dynamic(() => import("@/components/practice/PracticeCurriculum"), { ssr: false });
 const PracticeCTA = dynamic(() => import("@/components/practice/PracticeCTA"), { ssr: false });
+const CurriculumBuilder = dynamic(() => import("@/components/practice/CurriculumBuilder"), { ssr: false });
 
 
 
@@ -833,6 +837,7 @@ function LandingPageContent() {
             <SpeedHero />
             <LicenseDDayCalculator />
             <SpeedProblem />
+            <SpeedStory />
             <SpeedCurriculum />
             <SpeedCTA />
           </>
@@ -840,6 +845,7 @@ function LandingPageContent() {
           // Skill Layout
           <>
             <SkillHero />
+            <SkillDiagnosisTest />
             <SkillProblem />
             <SkillCurriculum />
             <SkillCTA />
@@ -848,6 +854,7 @@ function LandingPageContent() {
           // Phobia Layout
           <>
             <PhobiaHero />
+            <AnxietyReliefPrescription />
             <PhobiaProblem />
             <PhobiaCurriculum />
             <PhobiaCTA />
@@ -856,6 +863,7 @@ function LandingPageContent() {
           // Practice Layout
           <>
             <PracticeHero />
+            <CurriculumBuilder />
             <PracticeProblem />
             <PracticeCurriculum />
             <PracticeCTA />

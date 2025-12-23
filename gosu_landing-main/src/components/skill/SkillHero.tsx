@@ -39,7 +39,7 @@ const SkillHero = () => {
                         </h1>
 
                         <p className="text-gray-600 text-xl md:text-2xl mb-10 leading-relaxed font-medium break-keep">
-                            애매한 "감"으로 운전하면 반드시 떨어집니다.<br />
+                            애매한 &quot;감&quot;으로 운전하면 반드시 떨어집니다.<br />
                             수학 문제 풀듯이 <span className="text-black font-bold bg-blue-100 px-1">딱 떨어지는 정답</span>만 알려드립니다.
                         </p>
 

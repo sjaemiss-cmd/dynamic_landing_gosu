@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+
 
 export interface FeatureItem {
     title: string;
@@ -57,7 +57,7 @@ export const landingData: Record<string, LandingContent> = {
         designStyle: 'aggressive',
         hero: {
             badge: "고객의 의심을 확신으로 바꿔주는 한 방",
-            title: "학원들의 '3일 완성' 광고,<br/>솔직히 말씀드립니다.<br/>불가능합니다.",
+            title: "학원들의 '3일 완성' 광고,<br/>진실을 폭로합니다.",
             subtitle: "재능 타고난 상위 1%가 아니라면 현실적으로 어렵습니다.<br/>희망 고문 대신, 누구나 가능한 <strong class='text-brand-yellow'>'가장 빠른 1주일'</strong> 플랜을 제시합니다.",
             ctaText: "현실적인 1주 완성반 보기"
         },
@@ -111,13 +111,15 @@ export const landingData: Record<string, LandingContent> = {
             ]
         },
         offer: {
-            title: "1주 단기 완성반<br/>(The Real One-Week)",
-            priceDescription: "운전면허 시험장 응시료 25,000원.<br/>한 번 떨어질 때마다 치킨 한 마리 날아갑니다.",
+            title: "1주 단기 완성 패키지<br/>(The Real One-Week)",
+            priceDescription: "일반 학원 절반 가격으로 누리는 압도적 가치",
             points: [
-                "여러 번 떨어져서 스트레스받지 말고,",
-                "딱 1주일만 투자해서 한 번에 끝내세요."
+                "합격할 때까지 무제한 시뮬레이터 이용 (50만 원 상당)",
+                "도봉/노원 시험장 4개 코스 완벽 분석 리포트 (15만 원 상당)",
+                "1:1 밀착 약점 교정 코칭 (Priceless)",
+                "불합격 시 추가 교육비 0원 보장 (심리적 안전장치)"
             ],
-            ctaText: "1주 완성 스케줄 상담하기"
+            ctaText: "1주 완성 패키지 상담하기"
         },
         get usp() {
             return this.problem;
