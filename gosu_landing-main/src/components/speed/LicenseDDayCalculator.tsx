@@ -26,21 +26,20 @@ const LicenseDDayCalculator = () => {
 
     // Logic for days calculation
     const getDays = (type: "gosu" | "academy") => {
-        let baseDays = 0;
-        if (status === "beginner") baseDays = type === "gosu" ? 5 : 14;
-        if (status === "written") baseDays = type === "gosu" ? 4 : 10;
-        if (status === "function") baseDays = type === "gosu" ? 2 : 7;
+        if (type === "academy") return 30;
 
-        // Adjust based on hours (more hours = faster)
-        if (hours === 4) baseDays = Math.max(1, Math.round(baseDays * 0.7));
-        if (hours === 8) baseDays = Math.max(1, Math.round(baseDays * 0.5));
+        const mapping: Record<string, Record<number, number>> = {
+            beginner: { 2: 14, 4: 7, 8: 4 },
+            written: { 2: 15, 4: 8, 8: 4.5 },
+            function: { 2: 7, 4: 4, 8: 2 }
+        };
 
-        return baseDays;
+        return mapping[status][hours] || 7;
     };
 
     const gosuDays = getDays("gosu");
     const academyDays = getDays("academy");
-    const savedDays = academyDays - gosuDays;
+    const savedDays = Math.floor(academyDays - gosuDays);
 
     const today = new Date();
     const gosuDate = new Date(today);

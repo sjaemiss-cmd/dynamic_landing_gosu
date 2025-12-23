@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Binary, ChevronRight } from "lucide-react";
+import { landingData } from "@/data/landingData";
 
 const SkillHero = () => {
     return (
@@ -24,24 +25,18 @@ const SkillHero = () => {
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-bold mb-8 font-mono text-sm">
                             <Binary size={16} />
-                            <span>LOGIC DRIVEN DRIVING</span>
+                            <span>{landingData.skill.hero.badge}</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8 font-hakgyoansim tracking-tight">
-                            운전은 감각이 아니라<br />
-                            <span className="text-blue-600 relative inline-block">
-                                공식(Formula)
-                                <svg className="absolute w-full h-3 -bottom-1 left-0 text-blue-200 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
-                                </svg>
-                            </span>
-                            입니다.
-                        </h1>
+                        <h1
+                            className="text-5xl md:text-7xl font-bold leading-tight mb-8 font-hakgyoansim tracking-tight"
+                            dangerouslySetInnerHTML={{ __html: landingData.skill.hero.title }}
+                        />
 
-                        <p className="text-gray-600 text-xl md:text-2xl mb-10 leading-relaxed font-medium break-keep">
-                            애매한 &quot;감&quot;으로 운전하면 반드시 떨어집니다.<br />
-                            수학 문제 풀듯이 <span className="text-black font-bold bg-blue-100 px-1">딱 떨어지는 정답</span>만 알려드립니다.
-                        </p>
+                        <p
+                            className="text-gray-600 text-xl md:text-2xl mb-10 leading-relaxed font-medium break-keep"
+                            dangerouslySetInnerHTML={{ __html: landingData.skill.hero.subtitle }}
+                        />
 
                         <div className="flex flex-col sm:flex-row gap-4">
                             <motion.a
@@ -50,7 +45,7 @@ const SkillHero = () => {
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                             >
-                                합격 공식 다운로드 <ArrowRight size={20} />
+                                {landingData.skill.hero.ctaText} <ArrowRight size={20} />
                             </motion.a>
                             <motion.a
                                 href="#curriculum"

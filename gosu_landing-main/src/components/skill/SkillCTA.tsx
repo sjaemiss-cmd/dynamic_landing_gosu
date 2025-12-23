@@ -3,8 +3,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, FileText } from "lucide-react";
+import { landingData } from "@/data/landingData";
 
 const SkillCTA = () => {
+    const data = landingData.skill.offer;
+
     return (
         <section id="skill-cta" className="py-24 bg-blue-900 relative overflow-hidden text-white">
             {/* Background Grid */}
@@ -16,14 +19,15 @@ const SkillCTA = () => {
                         <FileText size={32} className="text-white" />
                     </div>
 
-                    <h2 className="text-3xl md:text-5xl font-bold mb-6 font-hakgyoansim">
-                        합격 공식, 지금 확인하세요
-                    </h2>
+                    <h2
+                        className="text-3xl md:text-5xl font-bold mb-6 font-hakgyoansim"
+                        dangerouslySetInnerHTML={{ __html: data.title }}
+                    />
 
-                    <p className="text-blue-100 text-lg md:text-xl mb-10 leading-relaxed">
-                        더 이상 감으로 운전하지 마세요.<br />
-                        정확한 공식으로 합격의 확신을 드립니다.
-                    </p>
+                    <p
+                        className="text-blue-100 text-lg md:text-xl mb-10 leading-relaxed break-keep"
+                        dangerouslySetInnerHTML={{ __html: data.priceDescription }}
+                    />
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
@@ -32,14 +36,16 @@ const SkillCTA = () => {
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-colors shadow-lg min-w-[200px]"
                         >
-                            <span>상담 신청하기</span>
+                            <span>{data.ctaText}</span>
                             <ArrowRight size={20} />
                         </a>
                     </div>
 
-                    <p className="mt-8 text-sm text-blue-300">
-                        * 불합격 시 보충 교육 무제한 제공
-                    </p>
+                    <div className="mt-8 text-sm text-blue-300 space-y-1">
+                        {data.points.map((point, index) => (
+                            <p key={index}>* {point}</p>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

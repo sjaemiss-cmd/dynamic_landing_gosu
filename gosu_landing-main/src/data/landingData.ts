@@ -1,5 +1,4 @@
 
-
 export interface FeatureItem {
     title: string;
     description: string;
@@ -20,6 +19,34 @@ export interface OfferContent {
     ctaText: string;
 }
 
+export interface DiagnosisOption {
+    id: string;
+    text: string;
+    score: number;
+}
+
+export interface DiagnosisQuestion {
+    id: number;
+    question: string;
+    options: DiagnosisOption[];
+}
+
+export interface DiagnosisResult {
+    minScore: number;
+    maxScore: number;
+    level: string;
+    description: string;
+    recommendation: string;
+    color: string;
+}
+
+export interface DiagnosisContent {
+    title: string;
+    subtitle: string;
+    questions: DiagnosisQuestion[];
+    results: DiagnosisResult[];
+}
+
 export interface LandingContent {
     hero: {
         badge: string;
@@ -37,6 +64,7 @@ export interface LandingContent {
         steps: CurriculumStep[];
     };
     offer: OfferContent;
+    diagnosis?: DiagnosisContent;
     usp?: { // Keeping for backward compatibility if needed, but we'll map problem to USP component
         title: string;
         subtitle: string;
@@ -79,47 +107,47 @@ export const landingData: Record<string, LandingContent> = {
                 },
                 {
                     title: "비용 추가 발생",
-                    description: "돈과 시간 아끼려다<br/>재시험 비용으로 15만 원 더 씁니다.",
+                    description: "돈과 시간 아끼려다<br/>재시험 비용으로 15만 원 더 씁니다.<br/>결국 4주 소요됩니다.",
                     icon: 'award',
                     highlight: false
                 }
             ]
         },
         curriculum: {
-            title: "재수 없는(One-Pass)<br/><span class='text-brand-yellow'>1주일 루틴</span>",
+            title: "재수 없는(One-Pass)<br/><span class='text-brand-yellow'>NO FAIL ROUTINE</span>",
             steps: [
                 {
-                    step: "Step 1 (1~2일차)",
-                    title: "감각 익히기",
-                    description: "핸들링, 페달 감각이 손에 붙을 때까지<br/>무한 리셋 (사고 걱정 없음)"
+                    step: "Step 1",
+                    title: "OT & 기능 기초",
+                    description: "필기 요령 및 학습법 코칭.<br/>좌/우회전, 차선 유지(코스 따라가기) 집중 연습"
                 },
                 {
-                    step: "Step 2 (3~4일차)",
-                    title: "공식 대입",
-                    description: "T자 주차, 직각 주차...<br/>감이 아니라 '수학 공식'처럼 외우게 만듭니다."
+                    step: "Step 2",
+                    title: "장내 기능 마스터",
+                    description: "기기 조작, 경사로, 돌발, 가속 구간 완벽 공략.<br/>가장 어려운 <strong>직각(T자) 주차</strong> 공식 전수"
                 },
                 {
-                    step: "Step 3 (5~6일차)",
-                    title: "도로 주행",
-                    description: "시험장 코스 A, B, C, D 그대로 시뮬레이션.<br/>네비게이션 소리까지 외워버립니다."
+                    step: "Step 3",
+                    title: "도로 주행 핵심 스킬",
+                    description: "가감속, 차선 변경, 교차로(좌/우/유턴),<br/>커브, 차간 거리 유지 등 실전 스킬 훈련"
                 },
                 {
-                    step: "Step 4 (7일차)",
-                    title: "시험 응시",
-                    description: "떨지 않고 한 번에 합격."
+                    step: "Step 4",
+                    title: "시험 코스 시뮬레이션",
+                    description: "면허시험장 A, B, C, D 코스 완벽 분석.<br/>네비게이션 음성과 코스를 통째로 암기"
                 }
             ]
         },
         offer: {
-            title: "1주 단기 완성 패키지<br/>(The Real One-Week)",
-            priceDescription: "일반 학원 절반 가격으로 누리는 압도적 가치",
+            title: "3개월 합격무제한반<br/>(기능+도로)",
+            priceDescription: "500,000원 (2종 보통 기준, 부가세 별도)",
             points: [
-                "합격할 때까지 무제한 시뮬레이터 이용 (50만 원 상당)",
-                "도봉/노원 시험장 4개 코스 완벽 분석 리포트 (15만 원 상당)",
-                "1:1 밀착 약점 교정 코칭 (Priceless)",
-                "불합격 시 추가 교육비 0원 보장 (심리적 안전장치)"
+                "3개월 내 면허 취득 시까지 무제한 교육",
+                "불합격 시 추가 교육비 0원 보장",
+                "도봉/노원 시험장 코스 완벽 분석",
+                "합격할 때까지 끝까지 책임집니다"
             ],
-            ctaText: "1주 완성 패키지 상담하기"
+            ctaText: "합격무제한반 상담하기"
         },
         get usp() {
             return this.problem;
@@ -129,14 +157,14 @@ export const landingData: Record<string, LandingContent> = {
         theme: "#3B82F6", // Blue for Trust/Logic
         designStyle: 'trust',
         hero: {
-            badge: "기계치, 겁쟁이도 무조건 합격",
-            title: "떨어질까 봐 걱정 마세요.<br/>합격할 때까지 <span class='text-brand-yellow'>추가 요금 0원.</span>",
-            subtitle: "운전은 감각이 아니라 '공식'입니다.<br/>기계치도 공식만 외우면 무조건 붙습니다.",
-            ctaText: "3개월 무제한 반 상담하기"
+            badge: "LOGIC DRIVEN DRIVING",
+            title: "운전은 감각이 아니라<br/><span class='text-blue-600'>공식(Formula)</span>입니다.",
+            subtitle: "애매한 '감'으로 운전하면 반드시 떨어집니다.<br/>수학 문제 풀듯이 <strong class='text-black bg-blue-100 px-1'>딱 떨어지는 정답</strong>만 알려드립니다.",
+            ctaText: "합격 공식 다운로드"
         },
         problem: {
-            title: "운전, 타고난 감각이<br/>필요할까요?",
-            subtitle: "아닙니다. 운전은 철저한 '공식'입니다.",
+            title: "왜 30년 베테랑 아빠에게<br/>배워도 떨어질까요?",
+            subtitle: "감으로 운전하는 것과 시험 합격 공식은 다릅니다.",
             features: [
                 {
                     title: "감(Feeling) vs 공식(Logic)",
@@ -163,34 +191,98 @@ export const landingData: Record<string, LandingContent> = {
             steps: [
                 {
                     step: "Step 1",
-                    title: "공식 이해",
-                    description: "주차, 차선 변경 등<br/>모든 동작을 공식화하여 학습"
+                    title: "OT & 기초 공식",
+                    description: "필기 요령 및 학습법 코칭.<br/>핸들링, 차선 유지 등 기초 주행 공식 학습"
                 },
                 {
                     step: "Step 2",
-                    title: "가이드 주행",
-                    description: "화면에 표시된 가이드라인을<br/>그대로 따라하는 반복 연습"
+                    title: "장내 기능 공식",
+                    description: "기기 조작, 경사로, 가속 구간 공식화.<br/>가장 어려운 <strong>직각(T자) 주차 공식</strong> 완벽 전수"
                 },
                 {
                     step: "Step 3",
-                    title: "무한 반복",
-                    description: "잘 안 되는 구간만<br/>집중적으로 무제한 반복"
+                    title: "도로 주행 공식",
+                    description: "차선 변경, 교차로, 유턴 등<br/>도로 상황별 대처법을 공식처럼 암기"
                 },
                 {
                     step: "Step 4",
-                    title: "실전 모의고사",
-                    description: "시험장과 동일한 환경에서<br/>합격 점수 나올 때까지 테스트"
+                    title: "시험 코스 분석",
+                    description: "면허시험장 A~D 코스 정밀 분석.<br/>네비게이션 음성과 코스 공략법 암기"
                 }
             ]
         },
         offer: {
-            title: "합격 보장반<br/>(Unlimited Pass)",
-            priceDescription: "떨어져도 걱정 없습니다.<br/>붙을 때까지 끝까지 책임집니다.",
+            title: "3개월 합격무제한반<br/>(기능+도로)",
+            priceDescription: "500,000원 (2종 보통 기준, 부가세 별도)",
             points: [
-                "합격할 때까지 추가 수강료 0원",
-                "불합격 시 보충 교육 무제한 제공"
+                "3개월 내 면허 취득 시까지 무제한 교육",
+                "불합격 시 추가 교육비 0원 보장",
+                "기능/도로주행 공식 완벽 전수",
+                "합격할 때까지 끝까지 책임집니다"
             ],
-            ctaText: "합격 보장반 상담하기"
+            ctaText: "합격무제한반 상담하기"
+        },
+        diagnosis: {
+            title: "나의 <span style='color: #3B82F6'>운전 실력</span> 진단하기",
+            subtitle: "간단한 테스트로 나에게 딱 맞는 커리큘럼을 찾아보세요.",
+            questions: [
+                {
+                    id: 1,
+                    question: "주차할 때 가장 어려운 점은 무엇인가요?",
+                    options: [
+                        { id: "a", text: "공간 감각이 없어서 어디로 꺾어야 할지 모르겠어요.", score: 1 },
+                        { id: "b", text: "수정 주차가 너무 어려워요.", score: 2 },
+                        { id: "c", text: "주차는 할 수 있는데 시간이 너무 오래 걸려요.", score: 3 },
+                        { id: "d", text: "주차는 자신 있어요!", score: 4 }
+                    ]
+                },
+                {
+                    id: 2,
+                    question: "차선 변경, 언제 가장 두려우신가요?",
+                    options: [
+                        { id: "a", text: "사이드미러 보는 것 자체가 무서워요.", score: 1 },
+                        { id: "b", text: "끼어들 타이밍을 전혀 못 잡겠어요.", score: 2 },
+                        { id: "c", text: "뒤차가 빵! 거릴까 봐 겁나요.", score: 3 },
+                        { id: "d", text: "차선 변경은 문제 없어요.", score: 4 }
+                    ]
+                },
+                {
+                    id: 3,
+                    question: "좁은 골목길이나 코너를 돌 때 느낌은?",
+                    options: [
+                        { id: "a", text: "긁을까 봐 조마조마해서 못 지나가겠어요.", score: 1 },
+                        { id: "b", text: "반대편에서 차가 오면 멘붕이 와요.", score: 2 },
+                        { id: "c", text: "천천히 가면 갈 수 있어요.", score: 3 },
+                        { id: "d", text: "부드럽게 잘 빠져나갑니다.", score: 4 }
+                    ]
+                }
+            ],
+            results: [
+                {
+                    minScore: 0,
+                    maxScore: 5,
+                    level: "기초 메커니즘 이해 필요",
+                    description: "핸들링, 페달 조작 등 기초부터 공식으로 잡아야 합니다.",
+                    recommendation: "3개월 합격무제한반 (기초 집중)",
+                    color: "text-red-500"
+                },
+                {
+                    minScore: 6,
+                    maxScore: 9,
+                    level: "도로주행 공식 적용 필요",
+                    description: "주차와 차선 변경 공식만 익히면 바로 합격권입니다.",
+                    recommendation: "3개월 합격무제한반 (공식 마스터)",
+                    color: "text-orange-500"
+                },
+                {
+                    minScore: 10,
+                    maxScore: 12,
+                    level: "합격 최적화 상태",
+                    description: "감각은 충분합니다. 시험장 코스 암기만 남았습니다.",
+                    recommendation: "3개월 합격무제한반 (코스 분석)",
+                    color: "text-green-500"
+                }
+            ]
         },
         get usp() {
             return this.problem;
@@ -211,14 +303,40 @@ export const landingData: Record<string, LandingContent> = {
             features: [] // Will use default USP component if empty
         },
         curriculum: {
-            title: "",
-            steps: []
+            title: "가성비 끝판왕<br/><span class='text-brand-yellow'>합격 최적화 루틴</span>",
+            steps: [
+                {
+                    step: "Step 1",
+                    title: "OT & 기초 주행",
+                    description: "필기 요령 및 학습법 코칭.<br/>기초 주행 능력 빠르게 습득"
+                },
+                {
+                    step: "Step 2",
+                    title: "장내 기능 마스터",
+                    description: "기기 조작, 경사로, 돌발, 가속 구간.<br/>직각(T자) 주차 집중 훈련"
+                },
+                {
+                    step: "Step 3",
+                    title: "도로 주행 스킬",
+                    description: "가감속, 차선 변경, 교차로, 커브 등<br/>실전 도로 주행 능력 배양"
+                },
+                {
+                    step: "Step 4",
+                    title: "시험 코스 완벽 대비",
+                    description: "면허시험장 A~D 코스 시뮬레이션.<br/>코스 암기 및 모의고사 진행"
+                }
+            ]
         },
         offer: {
-            title: "",
-            priceDescription: "",
-            points: [],
-            ctaText: ""
+            title: "3개월 합격무제한반<br/>(기능+도로)",
+            priceDescription: "500,000원 (2종 보통 기준, 부가세 별도)",
+            points: [
+                "3개월 내 면허 취득 시까지 무제한 교육",
+                "학원 대비 50% 저렴한 비용",
+                "불합격 시 추가 교육비 0원 보장",
+                "합격할 때까지 끝까지 책임집니다"
+            ],
+            ctaText: "최저가 상담하기"
         }
     },
     phobia: {
@@ -255,26 +373,31 @@ export const landingData: Record<string, LandingContent> = {
             steps: [
                 {
                     step: "STEP 01",
-                    title: "기초 조작 & 심리적 안정",
-                    description: "차량 조작법을 다시 익히고 시뮬레이터로 도로 환경에 적응합니다."
+                    title: "도로 주행 기초",
+                    description: "가감속, 차선 변경, 교차로(좌/우/유턴),<br/>커브, 차간 거리 유지 등 기초 주행 감각 회복"
                 },
                 {
                     step: "STEP 02",
-                    title: "두려움 극복 훈련",
-                    description: "복잡한 교차로, 끼어들기 등 두려운 상황을 반복 연습합니다."
+                    title: "심화 주행 & 고속도로",
+                    description: "고속 주행, 시내 주행(실제 도로 구현),<br/>지방 도로 코스 등 다양한 환경 적응"
                 },
                 {
                     step: "STEP 03",
-                    title: "실전 주행 시뮬레이션",
-                    description: "실제 도로와 유사한 환경에서 주행하며 자신감을 완성합니다."
+                    title: "주차 완전 정복",
+                    description: "후진/평행/기계식 주차, 좁은 골목길,<br/>주차장 진출입로 등 고난이도 주차 마스터"
                 }
             ]
         },
         offer: {
-            title: "이제 운전이 즐거워집니다",
-            priceDescription: "더 이상 두려워하지 마세요.",
-            points: ["무료 상담", "체험 예약"],
-            ctaText: "무료 상담 신청하기"
+            title: "장롱면허 탈출<br/>24시간 완성반",
+            priceDescription: "640,000원 (2종 보통 기준, 부가세 별도)",
+            points: [
+                "충분한 시간으로 두려움 완벽 극복",
+                "기초부터 주행까지 꼼꼼한 케어",
+                "사고 위험 없는 안전한 연수",
+                "자신감 생길 때까지 무한 반복"
+            ],
+            ctaText: "24시간 완성반 상담하기"
         },
         cta: {
             title: "이제 운전이 즐거워집니다",
@@ -319,26 +442,31 @@ export const landingData: Record<string, LandingContent> = {
             steps: [
                 {
                     step: "STEP 01",
-                    title: "실력 진단 & 취약점 파악",
-                    description: "현재 운전 실력을 정밀 진단하여<br/>부족한 부분을 정확히 찾아냅니다."
+                    title: "주행 감각 & 기초",
+                    description: "가감속, 차선 변경, 교차로 등<br/>잊어버린 기초 주행 감각을 빠르게 되살립니다."
                 },
                 {
                     step: "STEP 02",
-                    title: "원 포인트 집중 훈련",
-                    description: "주차, 차선 변경, 고속 주행 등<br/>취약한 스킬만 집중적으로 반복 연습합니다."
+                    title: "고속 & 시내 주행",
+                    description: "고속도로 진입, 복잡한 시내 주행,<br/>커브길 등 실전 도로 상황을 집중 연습합니다."
                 },
                 {
                     step: "STEP 03",
-                    title: "실전 응용 & 마스터",
-                    description: "다양한 시나리오에서 배운 스킬을 적용하며<br/>완벽하게 내 것으로 만듭니다."
+                    title: "주차 마스터",
+                    description: "후진, 평행, 기계식 주차 및<br/>좁은 골목길 주차까지 완벽하게 마스터합니다."
                 }
             ]
         },
         offer: {
-            title: "필요한 만큼만 배우세요",
-            priceDescription: "불필요한 시간 낭비 없이 핵심만 배웁니다.",
-            points: ["주차 마스터", "고속도로 주행", "시내 주행"],
-            ctaText: "원 포인트 레슨 상담받기"
+            title: "속성 12시간 마스터반",
+            priceDescription: "360,000원 (2종 보통 기준, 부가세 별도)",
+            points: [
+                "원하는 스킬만 집중 공략",
+                "가성비 최고의 선택",
+                "시간 낭비 없는 효율적 교육",
+                "부족한 부분만 쏙쏙 골라 마스터"
+            ],
+            ctaText: "12시간 마스터반 상담하기"
         }
     }
 };

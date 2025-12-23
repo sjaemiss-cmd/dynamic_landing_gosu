@@ -6,24 +6,24 @@ import { motion } from "framer-motion";
 const SpeedCurriculum = () => {
     const steps = [
         {
-            day: "Day 1-2",
-            title: "기초 감각 마스터",
-            desc: "핸들링, 페달 감각이 손에 붙을 때까지 무한 반복. 사고 걱정 없는 시뮬레이터에서 과감하게 밟아보세요."
+            day: "STEP 1",
+            title: "OT & 기능 기초",
+            desc: "필기 시험 응시 요령 및 학습법을 코칭합니다. 좌회전, 우회전, 차선 유지(코스 따라가기)를 집중 연습합니다."
         },
         {
-            day: "Day 3-4",
-            title: "기능 시험 공식화",
-            desc: "T자 주차, 직각 주차... 감으로 하지 마세요. 수학 공식처럼 딱딱 떨어지는 합격 공식을 전수합니다."
+            day: "STEP 2",
+            title: "장내 기능 마스터",
+            desc: "기기 조작, 경사로, 돌발상황, 교차로, 가속구간을 완벽하게 공략합니다. 가장 어려운 직각(T자) 주차 공식을 전수합니다."
         },
         {
-            day: "Day 5-6",
-            title: "도로 주행 시뮬레이션",
-            desc: "시험장 코스 A, B, C, D를 그대로 옮겨왔습니다. 네비게이션 음성까지 외울 정도로 반복합니다."
+            day: "STEP 3",
+            title: "도로 주행 핵심 스킬",
+            desc: "가감속(정주행 연습), 차선 변경, 교차로(좌회전, 유턴, 우회전, 신호체계), 커브 연습, 급커브, 차간 거리 유지, 차로 진입 등 실전 스킬을 훈련합니다."
         },
         {
-            day: "Day 7",
-            title: "면허 취득",
-            desc: "떨지 않고 한 번에 합격. 이것이 가장 빠른 길입니다."
+            day: "STEP 4",
+            title: "시험 코스 시뮬레이션",
+            desc: "면허시험장 도로주행 A, B, C, D 코스를 완벽 분석합니다. 네비게이션 음성과 코스를 통째로 암기합니다."
         }
     ];
 
@@ -32,9 +32,9 @@ const SpeedCurriculum = () => {
             <div className="container mx-auto px-4">
                 <div className="text-center mb-20">
                     <h2 className="text-3xl md:text-5xl font-bold font-hakgyoansim mb-4">
-                        <span className="text-red-600">NO FAIL</span> ROUTINE
+                        <span className="text-red-600">재수 없는</span> 2주일 루틴
                     </h2>
-                    <p className="text-gray-400">재수 없는 1주일 루틴</p>
+                    <p className="text-gray-400">NO FAIL ROUTINE</p>
                 </div>
 
                 <div className="relative max-w-4xl mx-auto">
@@ -75,3 +75,4 @@ const SpeedCurriculum = () => {
 };
 
 export default SpeedCurriculum;
+

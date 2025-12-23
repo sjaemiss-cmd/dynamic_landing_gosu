@@ -57,7 +57,7 @@ const CurriculumBuilder = () => {
 
         return {
             totalHours,
-            planName: totalHours >= 20 ? "완전 정복 마스터반" : totalHours >= 15 ? "자신감 회복 완성반" : "핵심 속성반",
+            planName: totalHours > 12 ? "장롱면허 탈출 24시간 완성반" : "속성 12시간 마스터반",
             features: selectedGoals.map(g => goals.find(goal => goal.id === g)?.label).filter(Boolean)
         };
     };
@@ -95,8 +95,8 @@ const CurriculumBuilder = () => {
                                             key={exp.id}
                                             onClick={() => handleExpSelect(exp.id)}
                                             className={`w-full p-5 rounded-xl text-left font-medium transition-all flex items-center justify-between group ${selectedExp === exp.id
-                                                    ? "bg-gray-800 border-opacity-100"
-                                                    : "bg-gray-800/50 border border-transparent hover:bg-gray-800 hover:border-gray-600"
+                                                ? "bg-gray-800 border-opacity-100"
+                                                : "bg-gray-800/50 border border-transparent hover:bg-gray-800 hover:border-gray-600"
                                                 }`}
                                             style={{ borderColor: selectedExp === exp.id ? theme : undefined }}
                                         >
@@ -125,8 +125,8 @@ const CurriculumBuilder = () => {
                                             key={goal.id}
                                             onClick={() => toggleGoal(goal.id)}
                                             className={`cursor-pointer p-5 rounded-xl border transition-all flex items-center gap-3 ${selectedGoals.includes(goal.id)
-                                                    ? "bg-gray-800"
-                                                    : "bg-gray-800/30 border-transparent hover:bg-gray-800/50"
+                                                ? "bg-gray-800"
+                                                : "bg-gray-800/30 border-transparent hover:bg-gray-800/50"
                                                 }`}
                                             style={{ borderColor: selectedGoals.includes(goal.id) ? theme : "transparent" }}
                                         >
@@ -150,8 +150,8 @@ const CurriculumBuilder = () => {
                                         onClick={calculateCurriculum}
                                         disabled={selectedGoals.length === 0}
                                         className={`flex-1 py-4 rounded-xl font-bold text-xl transition-all flex items-center justify-center gap-2 ${selectedGoals.length > 0
-                                                ? "text-brand-black hover:brightness-110 shadow-lg"
-                                                : "bg-gray-800 text-gray-500 cursor-not-allowed"
+                                            ? "text-brand-black hover:brightness-110 shadow-lg"
+                                            : "bg-gray-800 text-gray-500 cursor-not-allowed"
                                             }`}
                                         style={{ backgroundColor: selectedGoals.length > 0 ? theme : undefined }}
                                     >

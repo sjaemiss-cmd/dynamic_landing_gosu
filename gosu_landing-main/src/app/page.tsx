@@ -35,7 +35,7 @@ const SkillHero = dynamic(() => import("@/components/skill/SkillHero"));
 const SkillProblem = dynamic(() => import("@/components/skill/SkillProblem"));
 const SkillCurriculum = dynamic(() => import("@/components/skill/SkillCurriculum"));
 const SkillCTA = dynamic(() => import("@/components/skill/SkillCTA"));
-const SkillDiagnosisTest = dynamic(() => import("@/components/skill/SkillDiagnosisTest"), { ssr: false });
+const DriverDNATest = dynamic(() => import("@/components/skill/DriverDNATest"), { ssr: false });
 
 // Phobia Components
 const PhobiaHero = dynamic(() => import("@/components/phobia/PhobiaHero"), { ssr: false });
@@ -845,7 +845,7 @@ function LandingPageContent() {
           // Skill Layout
           <>
             <SkillHero />
-            <SkillDiagnosisTest />
+            <DriverDNATest />
             <SkillProblem />
             <SkillCurriculum />
             <SkillCTA />

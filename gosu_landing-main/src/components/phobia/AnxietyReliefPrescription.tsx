@@ -65,8 +65,8 @@ const AnxietyReliefPrescription = () => {
                                             key={trigger.id}
                                             onClick={() => toggleTrigger(trigger.id)}
                                             className={`cursor-pointer p-5 rounded-xl border transition-all flex items-center gap-4 ${selectedTriggers.includes(trigger.id)
-                                                    ? "bg-gray-800 border-opacity-100"
-                                                    : "bg-gray-800/30 border-transparent hover:bg-gray-800/50"
+                                                ? "bg-gray-800 border-opacity-100"
+                                                : "bg-gray-800/30 border-transparent hover:bg-gray-800/50"
                                                 }`}
                                             style={{
                                                 borderColor: selectedTriggers.includes(trigger.id) ? theme : "transparent"
@@ -74,8 +74,8 @@ const AnxietyReliefPrescription = () => {
                                         >
                                             <div
                                                 className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${selectedTriggers.includes(trigger.id)
-                                                        ? "bg-transparent"
-                                                        : "border-gray-600"
+                                                    ? "bg-transparent"
+                                                    : "border-gray-600"
                                                     }`}
                                                 style={{
                                                     borderColor: selectedTriggers.includes(trigger.id) ? theme : undefined
@@ -96,8 +96,8 @@ const AnxietyReliefPrescription = () => {
                                     onClick={generatePrescription}
                                     disabled={selectedTriggers.length === 0}
                                     className={`w-full py-5 rounded-xl font-bold text-xl transition-all flex items-center justify-center gap-2 ${selectedTriggers.length > 0
-                                            ? "text-brand-black hover:brightness-110 shadow-lg"
-                                            : "bg-gray-800 text-gray-500 cursor-not-allowed"
+                                        ? "text-brand-black hover:brightness-110 shadow-lg"
+                                        : "bg-gray-800 text-gray-500 cursor-not-allowed"
                                         }`}
                                     style={{
                                         backgroundColor: selectedTriggers.length > 0 ? theme : undefined
@@ -170,7 +170,7 @@ const AnxietyReliefPrescription = () => {
                                 <div className="bg-gray-100 rounded-xl p-6 mb-8 border border-gray-200">
                                     <p className="text-sm text-gray-500 mb-1 font-bold">추천 프로그램</p>
                                     <p className="text-2xl font-bold text-gray-900">
-                                        심리 케어 & 방어운전 마스터반
+                                        장롱면허 탈출 24시간 완성반
                                     </p>
                                 </div>
 

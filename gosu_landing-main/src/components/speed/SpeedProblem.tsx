@@ -50,7 +50,7 @@ const SpeedProblem = () => {
                             <li className="flex items-start gap-4 opacity-50">
                                 <AlertTriangle className="text-yellow-600 shrink-0 mt-1" size={20} />
                                 <div>
-                                    <strong className="block text-lg text-gray-300">결국 3주 소요</strong>
+                                    <strong className="block text-lg text-gray-300">결국 4주 소요</strong>
                                     <span className="text-sm text-gray-500">재시험 대기 + 추가 교육비 발생</span>
                                 </div>
                             </li>
@@ -66,7 +66,7 @@ const SpeedProblem = () => {
                     >
                         <div className="absolute top-0 left-0 w-full h-1 bg-red-600"></div>
                         <div className="flex items-start justify-between mb-8">
-                            <h3 className="text-2xl font-bold text-white">고수의 1주 플랜</h3>
+                            <h3 className="text-2xl font-bold text-white">고수의 2주 플랜</h3>
                             <Check className="text-red-500 w-8 h-8" />
                         </div>
 
@@ -94,7 +94,7 @@ const SpeedProblem = () => {
                                     <Check size={14} strokeWidth={3} />
                                 </div>
                                 <div>
-                                    <strong className="block text-lg text-white">진짜 1주일 완성</strong>
+                                    <strong className="block text-lg text-white">진짜 2주일 완성</strong>
                                     <span className="text-sm text-red-200/60">재시험 없이 한 번에 붙는 게 가장 빠릅니다</span>
                                 </div>
                             </li>
@@ -107,3 +107,4 @@ const SpeedProblem = () => {
 };
 
 export default SpeedProblem;
+
