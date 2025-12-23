@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import localFont from "next/font/local";
@@ -56,13 +56,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/logo-black.png",
-    apple: "/logo-black.png", // Ideally should be a square PNG
+    apple: "/logo-black.png",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
   themeColor: "#FECE48",
 };
 
