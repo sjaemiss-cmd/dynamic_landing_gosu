@@ -5,6 +5,7 @@ import type { LandingContent } from "@/data/landingData";
 interface HeroProps {
     data: LandingContent['hero'];
     theme: string;
+    locationName?: string;
 }
 
 /**
@@ -12,7 +13,11 @@ interface HeroProps {
  * Props로 데이터를 받아 렌더링하는 프레젠테이션 컴포넌트
  * LCP 최적화를 위해 framer-motion 제거하고 CSS 애니메이션 사용
  */
-const Hero = ({ data, theme }: HeroProps) => {
+const Hero = ({ data, theme, locationName }: HeroProps) => {
+    const titleContent = locationName
+        ? data.title.replace("운전면허", `${locationName} 운전면허`)
+        : data.title;
+
     return (
         <section className="relative min-h-screen flex items-center pt-24 pb-12 md:pt-40 md:pb-32 overflow-hidden">
             {/* Background Image */}
@@ -41,7 +46,7 @@ const Hero = ({ data, theme }: HeroProps) => {
                     </span>
                     <h1
                         className="text-5xl md:text-7xl font-extrabold leading-tight text-white mb-8 break-keep tracking-tight font-hakgyoansim"
-                        dangerouslySetInnerHTML={{ __html: data.title }}
+                        dangerouslySetInnerHTML={{ __html: titleContent }}
                     />
 
                     <p

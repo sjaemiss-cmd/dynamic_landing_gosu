@@ -4,7 +4,11 @@ import React from "react";
 import Image from "next/image";
 import { ArrowRight, Zap } from "lucide-react";
 
-const SpeedHero = () => {
+interface SpeedHeroProps {
+    locationName?: string;
+}
+
+const SpeedHero = ({ locationName }: SpeedHeroProps) => {
     return (
         <section className="relative min-h-screen flex items-center pt-24 pb-12 md:pt-40 md:pb-32 overflow-hidden bg-black">
             {/* Background Image */}
@@ -30,7 +34,9 @@ const SpeedHero = () => {
                         </div>
 
                         <h1 className="text-6xl md:text-9xl font-black text-white leading-[0.85] tracking-tighter mb-8 font-hakgyoansim italic">
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">3일 완성의 진실,</span><br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
+                                {locationName ? `${locationName} 주민을 위한 3일 완성의 진실,` : "3일 완성의 진실,"}
+                            </span><br />
                             <span className="text-red-600">폭로합니다.</span>
                         </h1>
 

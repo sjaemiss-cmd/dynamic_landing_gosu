@@ -5,9 +5,17 @@ import { Target, ArrowRight } from "lucide-react";
 import { landingData } from "@/data/landingData";
 import Image from "next/image";
 
-const PracticeHero = () => {
+interface PracticeHeroProps {
+    locationName?: string;
+}
+
+const PracticeHero = ({ locationName }: PracticeHeroProps) => {
     const data = landingData.practice.hero;
     const theme = landingData.practice.theme;
+
+    const titleContent = locationName
+        ? data.title.replace("10년째", `${locationName} 10년째`)
+        : data.title;
 
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-black pt-20">
@@ -50,7 +58,7 @@ const PracticeHero = () => {
                     {/* Title */}
                     <h1
                         className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight font-hakgyoansim break-keep drop-shadow-2xl"
-                        dangerouslySetInnerHTML={{ __html: data.title }}
+                        dangerouslySetInnerHTML={{ __html: titleContent }}
                     />
 
                     {/* Subtitle */}

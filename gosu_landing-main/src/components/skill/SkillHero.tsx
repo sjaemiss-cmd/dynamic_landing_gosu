@@ -5,7 +5,15 @@ import { motion } from "framer-motion";
 import { ArrowRight, Binary, ChevronRight } from "lucide-react";
 import { landingData } from "@/data/landingData";
 
-const SkillHero = () => {
+interface SkillHeroProps {
+    locationName?: string;
+}
+
+const SkillHero = ({ locationName }: SkillHeroProps) => {
+    const titleContent = locationName
+        ? landingData.skill.hero.title.replace("운전은", `${locationName} 운전은`)
+        : landingData.skill.hero.title;
+
     return (
         <section className="relative min-h-screen flex items-center pt-24 pb-12 md:pt-40 md:pb-32 overflow-hidden bg-white text-black">
             {/* Background Elements - Grid & Mathematical */}
@@ -30,7 +38,7 @@ const SkillHero = () => {
 
                         <h1
                             className="text-5xl md:text-7xl font-bold leading-tight mb-8 font-hakgyoansim tracking-tight"
-                            dangerouslySetInnerHTML={{ __html: landingData.skill.hero.title }}
+                            dangerouslySetInnerHTML={{ __html: titleContent }}
                         />
 
                         <p

@@ -5,7 +5,11 @@ import { ShieldCheck, ArrowRight } from "lucide-react";
 import { landingData } from "@/data/landingData";
 import Image from "next/image";
 
-const PhobiaHero = () => {
+interface PhobiaHeroProps {
+    locationName?: string;
+}
+
+const PhobiaHero = ({ locationName }: PhobiaHeroProps) => {
     const data = landingData.phobia.hero;
     const theme = landingData.phobia.theme;
 
@@ -41,7 +45,9 @@ const PhobiaHero = () => {
 
                     {/* Title */}
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight font-hakgyoansim break-keep drop-shadow-2xl">
-                        <span className="block mb-2 text-gray-200">도로 위가 무서우신가요?</span>
+                        <span className="block mb-2 text-gray-200">
+                            {locationName ? `${locationName} 도로 위가 무서우신가요?` : "도로 위가 무서우신가요?"}
+                        </span>
                         <span className="relative inline-block">
                             <span className="relative z-10">그건 당신의 잘못이 아닙니다.</span>
                             <span
