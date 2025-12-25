@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, Zap } from "lucide-react";
 
@@ -12,7 +11,7 @@ const SpeedHero = () => {
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/speed_hero_bg_v5.png"
-                    alt="Fastest Practice"
+                    alt="3일 완성 운전면허 속성 과정"
                     fill
                     className="object-cover opacity-40"
                     priority
@@ -24,12 +23,7 @@ const SpeedHero = () => {
             <div className="container mx-auto px-4 relative z-20">
                 <div className="max-w-4xl">
                     {/* Text Content */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="text-left"
-                    >
+                    <div className="text-left animate-fade-in-up">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-600/10 border border-red-600/30 rounded-full text-red-500 font-bold mb-8 animate-pulse">
                             <Zap size={16} fill="currentColor" />
                             <span className="text-sm tracking-wider uppercase">Speed Track</span>
@@ -46,19 +40,17 @@ const SpeedHero = () => {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-6">
-                            <motion.a
+                            <a
                                 href="#speed-cta"
-                                className="group relative px-10 py-5 bg-red-600 text-white font-bold text-xl rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(220,38,38,0.5)] hover:shadow-[0_0_50px_rgba(220,38,38,0.7)] transition-all duration-300"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
+                                className="group relative px-10 py-5 bg-red-600 text-white font-bold text-xl rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(220,38,38,0.5)] hover:shadow-[0_0_50px_rgba(220,38,38,0.7)] transition-all duration-300 hover:scale-105 active:scale-95"
                             >
                                 <span className="relative z-10 flex items-center gap-3">
                                     2주 완성반 신청하기 <ArrowRight className="group-hover:translate-x-2 transition-transform" />
                                 </span>
                                 <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            </motion.a>
+                            </a>
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

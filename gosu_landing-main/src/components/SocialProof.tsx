@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import ReviewModal from "@/components/ReviewModal";
 
 interface SocialProofProps {
@@ -222,10 +223,12 @@ const SocialProof = ({ theme = "#FECE48" }: SocialProofProps) => {
                                     style={{ color: `${theme}80` }}
                                 ></div>
 
-                                <img
+                                <Image
                                     src={review.image}
                                     alt={review.text}
-                                    className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                                    fill
+                                    sizes="(max-width: 768px) 256px, 320px"
+                                    className="object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                                     draggable={false}
                                 />
                                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-12">

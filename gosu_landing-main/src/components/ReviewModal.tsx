@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
+import Image from "next/image";
 
 interface ReviewModalProps {
     review: any;
@@ -31,10 +32,12 @@ const ReviewModal = ({ review, onClose, theme = "#FECE48" }: ReviewModalProps) =
 
                 <div className="flex flex-col md:flex-row">
                     <div className="w-full md:w-1/2 h-64 md:h-auto relative">
-                        <img
+                        <Image
                             src={review.image}
                             alt={review.name}
-                            className="w-full h-full object-cover"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover"
                         />
                     </div>
                     <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col">

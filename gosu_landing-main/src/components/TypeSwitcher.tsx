@@ -2,19 +2,26 @@
 
 import React from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const TypeSwitcher = () => {
-    const searchParams = useSearchParams();
-    const currentType = searchParams.get("type") || "cost";
+    const pathname = usePathname();
+
+    // Determine current type based on pathname
+    const getCurrentType = (path: string) => {
+        if (path === "/" || path === "/cost") return "cost";
+        return path.replace("/", "");
+    };
+
+    const currentType = getCurrentType(pathname);
 
     const types = [
-        { id: "speed", label: "Speed (1주)" },
-        { id: "skill", label: "Skill (공식)" },
-        { id: "cost", label: "Cost (가성비)" },
-        { id: "phobia", label: "Phobia (장롱)" },
-        { id: "practice", label: "Practice (핀셋)" },
+        { id: "speed", label: "Speed (1주)", href: "/speed" },
+        { id: "skill", label: "Skill (공식)", href: "/skill" },
+        { id: "cost", label: "Cost (가성비)", href: "/" },
+        { id: "phobia", label: "Phobia (장롱)", href: "/phobia" },
+        { id: "practice", label: "Practice (핀셋)", href: "/practice" },
     ];
 
     return (
@@ -22,7 +29,7 @@ const TypeSwitcher = () => {
             {types.map((type) => (
                 <Link
                     key={type.id}
-                    href={`/?type=${type.id}`}
+                    href={type.href}
                     className={cn(
                         "px-4 py-2 rounded-full text-sm font-bold transition-all whitespace-nowrap",
                         currentType === type.id

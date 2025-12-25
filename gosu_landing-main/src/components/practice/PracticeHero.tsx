@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Target, ArrowRight } from "lucide-react";
 import { landingData } from "@/data/landingData";
 import Image from "next/image";
@@ -16,7 +15,7 @@ const PracticeHero = () => {
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/practice_hero_bg.png"
-                    alt="Precision Driving Simulator"
+                    alt="정밀 운전 시뮬레이터 연습 화면"
                     fill
                     className="object-cover opacity-70"
                     priority
@@ -34,18 +33,10 @@ const PracticeHero = () => {
             </div>
 
             <div className="container mx-auto px-4 relative z-20 text-center md:text-left">
-                <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="max-w-4xl"
-                >
+                <div className="max-w-4xl animate-fade-in-up">
                     {/* Badge */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.2, duration: 0.5 }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none border-l-4 mb-8 bg-black/50 backdrop-blur-sm"
+                    <div
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none border-l-4 mb-8 bg-black/50 backdrop-blur-sm animate-fade-in delay-200"
                         style={{
                             borderColor: theme,
                         }}
@@ -54,7 +45,7 @@ const PracticeHero = () => {
                         <span className="text-sm font-bold tracking-widest uppercase text-white">
                             {data.badge}
                         </span>
-                    </motion.div>
+                    </div>
 
                     {/* Title */}
                     <h1
@@ -69,10 +60,8 @@ const PracticeHero = () => {
                     />
 
                     {/* CTA Button */}
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="group relative inline-flex items-center gap-3 px-10 py-4 text-lg font-bold text-white shadow-lg transition-all overflow-hidden"
+                    <button
+                        className="group relative inline-flex items-center gap-3 px-10 py-4 text-lg font-bold text-white shadow-lg transition-all overflow-hidden hover:scale-105 active:scale-95"
                         style={{
                             backgroundColor: 'transparent',
                             border: `2px solid ${theme}`
@@ -90,8 +79,8 @@ const PracticeHero = () => {
                             className="absolute inset-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"
                             style={{ backgroundColor: theme }}
                         ></div>
-                    </motion.button>
-                </motion.div>
+                    </button>
+                </div>
             </div>
 
             {/* Tech Decorations */}
