@@ -6,6 +6,7 @@ interface HeroProps {
     data: LandingContent['hero'];
     theme: string;
     locationName?: string;
+    keyword?: string;
 }
 
 /**
@@ -13,9 +14,10 @@ interface HeroProps {
  * Props로 데이터를 받아 렌더링하는 프레젠테이션 컴포넌트
  * LCP 최적화를 위해 framer-motion 제거하고 CSS 애니메이션 사용
  */
-const Hero = ({ data, theme, locationName }: HeroProps) => {
-    const titleContent = locationName
-        ? data.title.replace("운전면허", `${locationName} 운전면허`)
+const Hero = ({ data, theme, locationName, keyword }: HeroProps) => {
+    // 지역명이 있으면 별도 라인으로 분리하고, 타이틀에서 "운전면허" 중복 제거
+    const mainTitle = locationName
+        ? data.title.replace("운전면허 ", "")
         : data.title;
 
     return (
@@ -45,9 +47,15 @@ const Hero = ({ data, theme, locationName }: HeroProps) => {
                         {data.badge}
                     </span>
                     <h1
-                        className="text-5xl md:text-7xl font-extrabold leading-tight text-white mb-8 break-keep tracking-tight font-hakgyoansim"
-                        dangerouslySetInnerHTML={{ __html: titleContent }}
-                    />
+                        className="text-4xl md:text-7xl font-extrabold leading-tight text-white mb-8 break-keep tracking-tight font-hakgyoansim"
+                    >
+                        {locationName && (
+                            <span className="block text-2xl md:text-4xl font-bold text-white/70 mb-4">
+                                {locationName} {keyword || "운전면허"},
+                            </span>
+                        )}
+                        <span dangerouslySetInnerHTML={{ __html: mainTitle }} />
+                    </h1>
 
                     <p
                         className="text-gray-300 text-lg md:text-2xl mb-10 leading-relaxed break-keep max-w-3xl mx-auto"
@@ -55,7 +63,7 @@ const Hero = ({ data, theme, locationName }: HeroProps) => {
                     />
 
                     <a
-                        href="#offer"
+                        href={data.ctaLink || "#offer"}
                         className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                         style={{
                             backgroundColor: theme,

@@ -36,11 +36,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const decodedSlug = decodeURIComponent(slug);
   const locationInfo = locationData.find((loc) => loc.slug === decodedSlug);
   const locationName = locationInfo ? locationInfo.name : decodedSlug;
+  const keyword = locationInfo?.keyword || "운전연수";
   const landmark = locationInfo?.landmarks[0] || "지하철역";
 
   return {
-    title: `${locationName} 운전연수 추천 | 고수의 운전면허`,
-    description: `${locationName} ${landmark} 근처 쾌적한 실내 운전연습장. 속성 면허부터 장롱면허 탈출까지, 합리적인 비용으로 시작하세요.`,
+    title: `${locationName} ${keyword} 추천 | 고수의 운전면허`,
+    description: `${locationName} ${landmark} 근처 쾌적한 실내 운전연습장. ${keyword} 고민 해결! 속성 면허부터 장롱면허 탈출까지, 합리적인 비용으로 시작하세요.`,
     alternates: {
       canonical: `https://www.gosudriving.com/locations/${slug}`,
     },
@@ -52,6 +53,7 @@ export default async function Page({ params }: Props) {
   const decodedSlug = decodeURIComponent(slug);
   const locationInfo = locationData.find((loc) => loc.slug === decodedSlug);
   const locationName = locationInfo ? locationInfo.name : "";
+  const keyword = locationInfo?.keyword; // Extract keyword
 
   const costData = landingData.cost;
   const costTheme = costData.theme || "#FECE48";
@@ -64,8 +66,7 @@ export default async function Page({ params }: Props) {
 
         {/* 1. Speed Section (Main Hero) */}
         <section className="relative">
-          <SpeedHero locationName={locationName} />
-          {/* Speed CTA is already inside SpeedHero, but we can add a transition or just let it be the main entry */}
+          <SpeedHero locationName={locationName} keyword={keyword} />
         </section>
 
         {/* Divider */}
@@ -73,7 +74,7 @@ export default async function Page({ params }: Props) {
 
         {/* 2. Phobia Section */}
         <section className="relative">
-          <PhobiaHero locationName={locationName} />
+          <PhobiaHero locationName={locationName} keyword={keyword} />
 
           {/* Phobia Detail Link CTA */}
           <div className="bg-brand-black py-12 flex justify-center">
@@ -92,7 +93,7 @@ export default async function Page({ params }: Props) {
 
         {/* 3. Cost Section */}
         <section className="relative">
-          <Hero data={costData.hero} theme={costTheme} locationName={locationName} />
+          <Hero data={costData.hero} theme={costTheme} locationName={locationName} keyword={keyword} />
 
           {/* Cost Detail Link CTA */}
           <div className="bg-brand-black py-12 flex justify-center">

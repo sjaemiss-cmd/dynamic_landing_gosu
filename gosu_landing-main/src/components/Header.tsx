@@ -9,8 +9,23 @@ import { Phone, Menu, X } from "lucide-react";
  * 헤더 컴포넌트 - 네비게이션 및 모바일 메뉴 포함
  * 클라이언트 컴포넌트 (useState 사용)
  */
+import { usePathname } from "next/navigation";
+
+// ... (imports)
+
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
+
+    const getIntentLabel = (path: string) => {
+        if (path.includes('/speed')) return "D-day 계산기";
+        if (path.includes('/skill')) return "운전 DNA 테스트";
+        if (path.includes('/phobia')) return "운전 처방전";
+        if (path.includes('/practice')) return "커리큘럼 생성";
+        return "비용 계산기"; // Default (Cost)
+    };
+
+    const calculatorLabel = getIntentLabel(pathname);
 
     return (
         <LazyMotion features={domAnimation}>
@@ -18,6 +33,7 @@ const Header = () => {
                 className="fixed top-0 left-0 right-0 z-50 py-5 bg-brand-black/80 backdrop-blur-sm"
             >
                 <div className="container mx-auto px-4 flex justify-between items-center">
+                    {/* ... Logo ... */}
                     <div className="flex items-center">
                         <Image
                             src="/logo-white.png"
@@ -32,8 +48,9 @@ const Header = () => {
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center gap-6">
                         <nav className="flex gap-6 text-sm font-medium text-gray-300">
-                            <a href="#calculator" className="hover:text-white transition-colors">비용 계산기</a>
+                            <a href="#calculator" className="hover:text-white transition-colors">{calculatorLabel}</a>
                             <a href="#usp" className="hover:text-white transition-colors">특장점</a>
+                            {/* ... other links ... */}
                             <a href="#reviews" className="hover:text-white transition-colors">후기</a>
                             <a href="#location" className="hover:text-white transition-colors">약도</a>
                             <a href="#event" className="hover:text-white transition-colors">이벤트</a>
@@ -94,7 +111,7 @@ const Header = () => {
                                 }}
                                 className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
                             >
-                                비용 계산기
+                                {calculatorLabel}
                             </a>
                             <a
                                 href="#usp"

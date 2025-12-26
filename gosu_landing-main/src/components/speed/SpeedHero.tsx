@@ -6,9 +6,10 @@ import { ArrowRight, Zap } from "lucide-react";
 
 interface SpeedHeroProps {
     locationName?: string;
+    keyword?: string;
 }
 
-const SpeedHero = ({ locationName }: SpeedHeroProps) => {
+const SpeedHero = ({ locationName, keyword }: SpeedHeroProps) => {
     return (
         <section className="relative min-h-screen flex items-center pt-24 pb-12 md:pt-40 md:pb-32 overflow-hidden bg-black">
             {/* Background Image */}
@@ -33,11 +34,25 @@ const SpeedHero = ({ locationName }: SpeedHeroProps) => {
                             <span className="text-sm tracking-wider uppercase">Speed Track</span>
                         </div>
 
-                        <h1 className="text-6xl md:text-9xl font-black text-white leading-[0.85] tracking-tighter mb-8 font-hakgyoansim italic">
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
-                                {locationName ? `${locationName} 주민을 위한 3일 완성의 진실,` : "3일 완성의 진실,"}
-                            </span><br />
-                            <span className="text-red-600">폭로합니다.</span>
+                        <h1 className="text-5xl md:text-8xl font-black text-white leading-tight tracking-tight mb-8 font-hakgyoansim break-keep">
+                            {locationName ? (
+                                <>
+                                    <span className="block text-2xl md:text-4xl font-bold text-white/80 mb-4 tracking-normal">
+                                        {locationName} {keyword || "운전면허"},
+                                    </span>
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+                                        3일 완성의 진실을
+                                    </span><br />
+                                    <span className="text-red-600">폭로합니다.</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+                                        3일 완성의 진실,
+                                    </span><br />
+                                    <span className="text-red-600">폭로합니다.</span>
+                                </>
+                            )}
                         </h1>
 
                         <p className="text-gray-300 text-xl md:text-3xl mb-12 leading-tight max-w-2xl font-medium">

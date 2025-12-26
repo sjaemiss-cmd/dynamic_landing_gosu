@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import React from "react";
 import { notFound } from "next/navigation";
 import { landingData } from "@/data/landingData";
-import { locationData, intentData } from "@/data/seoData";
+import { locationData, intentData, intentKeywordMap } from "@/data/seoData";
 
 // Components
 import Header from "@/components/Header";
@@ -57,10 +57,14 @@ export function generateStaticParams() {
 
     locationData.forEach((location) => {
         intentData.forEach((intent) => {
-            params.push({
-                slug: location.slug,
-                intent: intent,
-            });
+            // Intent에 맞는 키워드인 경우에만 페이지 생성
+            const validKeywords = intentKeywordMap[intent] || [];
+            if (validKeywords.includes(location.keyword)) {
+                params.push({
+                    slug: location.slug,
+                    intent: intent,
+                });
+            }
         });
     });
 
@@ -79,6 +83,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const decodedSlug = decodeURIComponent(slug);
     const locationInfo = locationData.find((loc) => loc.slug === decodedSlug);
     const locationName = locationInfo ? locationInfo.name : decodedSlug;
+    // Use the keyword from the slug (e.g., "운전연수") if available, to differentiate
+    const slugKeyword = locationInfo?.keyword || "";
     const landmark = locationInfo?.landmarks[Math.floor(Math.random() * locationInfo.landmarks.length)] || "지하철역";
 
     const intentMap: Record<string, { keyword: string; desc: string }> = {
@@ -89,11 +95,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         skill: { keyword: "운전면허 공식", desc: "기능, 도로주행 합격 공식을 전수하는 전문 교육." },
     };
 
-    const { keyword, desc } = intentMap[intent] || intentMap.cost;
+    const { keyword: intentKeyword, desc } = intentMap[intent] || intentMap.cost;
+
+    // Combine location keyword and intent keyword for a rich title
+    // e.g., "도봉구 운전연수 - 속성 운전면허 | 고수의 운전면허"
+    const title = slugKeyword
+        ? `${locationName} ${slugKeyword} - ${intentKeyword} | 고수의 운전면허`
+        : `${locationName} ${intentKeyword} | 고수의 운전면허`;
 
     return {
-        title: `${locationName} ${keyword} | 고수의 운전면허`,
-        description: `${locationName} ${landmark} 근처 운전연수. ${desc} 고수의 운전면허에서 시작하세요.`,
+        title: title,
+        description: `${locationName} ${landmark} 근처 ${slugKeyword} 전문. ${desc} 고수의 운전면허에서 시작하세요.`,
         alternates: {
             canonical: `https://www.gosudriving.com/locations/${slug}/${intent}`,
         },
@@ -105,20 +117,27 @@ export default async function Page({ params }: Props) {
     const decodedSlug = decodeURIComponent(slug);
     const locationInfo = locationData.find((loc) => loc.slug === decodedSlug);
     const locationName = locationInfo ? locationInfo.name : "";
+    const slugKeyword = locationInfo?.keyword || ""; // Extract keyword for component usage
 
     // Validate intent
     if (!intentData.includes(intent)) {
         return notFound();
     }
 
-    const theme = landingData[intent]?.theme || landingData.cost.theme;
+    // Validate keyword for intent (Runtime check)
+    const validKeywords = intentKeywordMap[intent] || [];
+    if (!validKeywords.includes(slugKeyword)) {
+        return notFound();
+    }
+
+    const theme: string = landingData[intent]?.theme || landingData.cost.theme || "#FECE48";
 
     const renderContent = () => {
         switch (intent) {
             case "speed":
                 return (
                     <>
-                        <SpeedHero locationName={locationName} />
+                        <SpeedHero locationName={locationName} keyword={slugKeyword} />
                         <LicenseDDayCalculator />
                         <SpeedProblem />
                         <SpeedStory />
@@ -129,7 +148,7 @@ export default async function Page({ params }: Props) {
             case "phobia":
                 return (
                     <>
-                        <PhobiaHero locationName={locationName} />
+                        <PhobiaHero locationName={locationName} keyword={slugKeyword} />
                         <AnxietyReliefPrescription />
                         <PhobiaProblem />
                         <PhobiaCurriculum />
@@ -139,7 +158,7 @@ export default async function Page({ params }: Props) {
             case "skill":
                 return (
                     <>
-                        <SkillHero locationName={locationName} />
+                        <SkillHero locationName={locationName} keyword={slugKeyword} />
                         <DriverDNATest />
                         <SkillProblem />
                         <SkillCurriculum />
@@ -149,7 +168,7 @@ export default async function Page({ params }: Props) {
             case "practice":
                 return (
                     <>
-                        <PracticeHero locationName={locationName} />
+                        <PracticeHero locationName={locationName} keyword={slugKeyword} />
                         <CurriculumBuilder />
                         <PracticeProblem />
                         <PracticeCurriculum />
@@ -161,7 +180,7 @@ export default async function Page({ params }: Props) {
                 const costData = landingData.cost;
                 return (
                     <>
-                        <Hero data={costData.hero} theme={theme} locationName={locationName} />
+                        <Hero data={costData.hero} theme={theme} locationName={locationName} keyword={slugKeyword} />
                         <CostCalculator />
                         <USP data={costData.problem} theme={theme} />
                         <Curriculum

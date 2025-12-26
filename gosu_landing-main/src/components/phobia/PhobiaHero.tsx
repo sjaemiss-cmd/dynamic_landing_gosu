@@ -7,9 +7,10 @@ import Image from "next/image";
 
 interface PhobiaHeroProps {
     locationName?: string;
+    keyword?: string;
 }
 
-const PhobiaHero = ({ locationName }: PhobiaHeroProps) => {
+const PhobiaHero = ({ locationName, keyword }: PhobiaHeroProps) => {
     const data = landingData.phobia.hero;
     const theme = landingData.phobia.theme;
 
@@ -45,15 +46,23 @@ const PhobiaHero = ({ locationName }: PhobiaHeroProps) => {
 
                     {/* Title */}
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight font-hakgyoansim break-keep drop-shadow-2xl">
+                        {locationName && (
+                            <span className="block text-xl md:text-3xl font-bold text-gray-400 mb-3">
+                                {locationName} {keyword || "도로연수"},
+                            </span>
+                        )}
                         <span className="block mb-2 text-gray-200">
-                            {locationName ? `${locationName} 도로 위가 무서우신가요?` : "도로 위가 무서우신가요?"}
+                            도로 위가 무서우신가요?
                         </span>
-                        <span className="relative inline-block">
-                            <span className="relative z-10">그건 당신의 잘못이 아닙니다.</span>
-                            <span
-                                className="absolute bottom-2 left-0 w-full h-3 md:h-4 -z-10 opacity-80 animate-fade-in delay-500"
-                                style={{ backgroundColor: theme }}
-                            ></span>
+                        <span
+                            className="relative z-10 inline px-1"
+                            style={{
+                                backgroundImage: `linear-gradient(to top, ${theme}80 40%, transparent 40%)`,
+                                boxDecorationBreak: 'clone',
+                                WebkitBoxDecorationBreak: 'clone'
+                            }}
+                        >
+                            그건 당신의 잘못이 아닙니다.
                         </span>
                     </h1>
 
@@ -68,20 +77,17 @@ const PhobiaHero = ({ locationName }: PhobiaHeroProps) => {
                     </p>
 
                     {/* CTA Button */}
-                    <button
+                    <a
+                        href={data.ctaLink || "#offer"}
                         className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full text-lg font-bold text-brand-black shadow-[0_0_30px_rgba(74,222,128,0.3)] transition-all hover:shadow-[0_0_50px_rgba(74,222,128,0.5)] hover:scale-105 active:scale-95"
                         style={{ backgroundColor: theme }}
-                        onClick={() => {
-                            const element = document.getElementById('offer');
-                            element?.scrollIntoView({ behavior: 'smooth' });
-                        }}
                     >
                         <span>{data.ctaText}</span>
                         <ArrowRight className="group-hover:translate-x-1 transition-transform" />
 
                         {/* Ripple Effect */}
                         <span className="absolute inset-0 rounded-full animate-ping opacity-20" style={{ backgroundColor: theme }}></span>
-                    </button>
+                    </a>
                 </div>
             </div>
 

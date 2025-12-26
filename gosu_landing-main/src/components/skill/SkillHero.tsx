@@ -7,11 +7,12 @@ import { landingData } from "@/data/landingData";
 
 interface SkillHeroProps {
     locationName?: string;
+    keyword?: string;
 }
 
-const SkillHero = ({ locationName }: SkillHeroProps) => {
+const SkillHero = ({ locationName, keyword }: SkillHeroProps) => {
     const titleContent = locationName
-        ? landingData.skill.hero.title.replace("운전은", `${locationName} 운전은`)
+        ? `<span class="block text-2xl md:text-4xl font-bold text-gray-500 mb-4">${locationName} ${keyword || "운전면허"},</span>공식과 반복이 <span class="text-blue-600">합격의 지름길</span>입니다.`
         : landingData.skill.hero.title;
 
     return (
@@ -37,7 +38,7 @@ const SkillHero = ({ locationName }: SkillHeroProps) => {
                         </div>
 
                         <h1
-                            className="text-5xl md:text-7xl font-bold leading-tight mb-8 font-hakgyoansim tracking-tight"
+                            className="text-4xl md:text-7xl font-bold leading-tight mb-8 font-hakgyoansim tracking-tight break-keep"
                             dangerouslySetInnerHTML={{ __html: titleContent }}
                         />
 

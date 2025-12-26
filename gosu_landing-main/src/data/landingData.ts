@@ -17,6 +17,7 @@ export interface OfferContent {
     priceDescription: string;
     points: string[];
     ctaText: string;
+    ctaLink?: string;
 }
 
 export interface DiagnosisOption {
@@ -53,6 +54,7 @@ export interface LandingContent {
         title: string;
         subtitle: string;
         ctaText: string;
+        ctaLink?: string;
     };
     problem: {
         title: string;
@@ -76,6 +78,7 @@ export interface LandingContent {
         title: string;
         subtitle: string;
         button: string;
+        link?: string;
     };
 }
 
@@ -107,7 +110,7 @@ export const landingData: Record<string, LandingContent> = {
                 },
                 {
                     title: "비용 추가 발생",
-                    description: "돈과 시간 아끼려다<br/>재시험 비용으로 15만 원 더 씁니다.<br/>결국 4주 소요됩니다.",
+                    description: "돈과 시간 아끼려다<br/>재시험 비용으로 15만 원 더 썼습니다.<br/>결국 4주 소요됩니다.",
                     icon: 'award',
                     highlight: false
                 }
@@ -202,7 +205,7 @@ export const landingData: Record<string, LandingContent> = {
                 {
                     step: "Step 3",
                     title: "도로 주행 공식",
-                    description: "차선 변경, 교차로, 유턴 등<br/>도로 상황별 대처법을 공식처럼 암기"
+                    description: "나의 주행 습관을 고수 매니저가 하나하나 샅샅히 파악하여 빗나간 각도와 타이밍을 미세 조정해드립니다."
                 },
                 {
                     step: "Step 4",
@@ -213,7 +216,7 @@ export const landingData: Record<string, LandingContent> = {
         },
         offer: {
             title: "3개월 합격무제한반<br/>(기능+도로)",
-            priceDescription: "500,000원 (2종 보통 기준, 부가세 별도)",
+            priceDescription: "550,000원 (부가세 포함)",
             points: [
                 "3개월 내 면허 취득 시까지 무제한 교육",
                 "불합격 시 추가 교육비 0원 보장",
@@ -262,7 +265,7 @@ export const landingData: Record<string, LandingContent> = {
                     minScore: 0,
                     maxScore: 5,
                     level: "기초 메커니즘 이해 필요",
-                    description: "핸들링, 페달 조작 등 기초부터 공식으로 잡아야 합니다.",
+                    description: "재능은 충분합니다! 하지만 자만은 금물. '3개월 무제한반'으로 감각을 완벽하게 다듬고, 최단 기간 합격에 도전하세요. 평균 한달만에 면허취득까지 가능합니다!",
                     recommendation: "3개월 합격무제한반 (기초 집중)",
                     color: "text-red-500"
                 },
@@ -270,7 +273,7 @@ export const landingData: Record<string, LandingContent> = {
                     minScore: 6,
                     maxScore: 9,
                     level: "도로주행 공식 적용 필요",
-                    description: "주차와 차선 변경 공식만 익히면 바로 합격권입니다.",
+                    description: "재능은 충분합니다! 하지만 자만은 금물. '3개월 무제한반'으로 감각을 완벽하게 다듬고, 최단 기간 합격에 도전하세요. 평균 한달만에 면허취득까지 가능합니다!",
                     recommendation: "3개월 합격무제한반 (공식 마스터)",
                     color: "text-orange-500"
                 },
@@ -278,7 +281,7 @@ export const landingData: Record<string, LandingContent> = {
                     minScore: 10,
                     maxScore: 12,
                     level: "합격 최적화 상태",
-                    description: "감각은 충분합니다. 시험장 코스 암기만 남았습니다.",
+                    description: "재능은 충분합니다! 하지만 자만은 금물. '3개월 무제한반'으로 감각을 완벽하게 다듬고, 최단 기간 합격에 도전하세요. 평균 한달만에 면허취득까지 가능합니다!",
                     recommendation: "3개월 합격무제한반 (코스 분석)",
                     color: "text-green-500"
                 }
@@ -329,14 +332,15 @@ export const landingData: Record<string, LandingContent> = {
         },
         offer: {
             title: "3개월 합격무제한반<br/>(기능+도로)",
-            priceDescription: "500,000원 (2종 보통 기준, 부가세 별도)",
+            priceDescription: "550,000원 (부가세 포함)",
             points: [
                 "3개월 내 면허 취득 시까지 무제한 교육",
                 "학원 대비 50% 저렴한 비용",
                 "불합격 시 추가 교육비 0원 보장",
                 "합격할 때까지 끝까지 책임집니다"
             ],
-            ctaText: "최저가 상담하기"
+            ctaText: "최저가 상담하기",
+            ctaLink: "https://pcmap.place.naver.com/place/38729351/ticket"
         }
     },
     phobia: {
@@ -345,7 +349,8 @@ export const landingData: Record<string, LandingContent> = {
             title: "도로 위가 무서우신가요?\n그건 당신의 잘못이 아닙니다.",
             subtitle: "사고 위험 0%의 안전한 시뮬레이터에서\n운전의 즐거움을 되찾아 드립니다.",
             badge: "장롱면허 탈출 솔루션",
-            ctaText: "안전운전 체험 예약하기"
+            ctaText: "안전운전 체험 예약하기",
+            ctaLink: "https://pcmap.place.naver.com/place/38729351/ticket"
         },
         problem: {
             title: "왜 운전이 두려워졌을까요?",
@@ -353,7 +358,7 @@ export const landingData: Record<string, LandingContent> = {
             features: [
                 {
                     title: "절대 안전",
-                    description: "사고 위험 0%, 시뮬레이터만의 장점으로 두려움 극복",
+                    description: "사고로부터 100% 안전한 실내 시뮬레이터로 도로상황을 완벽하게 재현해 운전에 자신감을 쌓아갑니다",
                     icon: "ShieldCheck"
                 },
                 {
@@ -374,17 +379,17 @@ export const landingData: Record<string, LandingContent> = {
                 {
                     step: "STEP 01",
                     title: "도로 주행 기초",
-                    description: "가감속, 차선 변경, 교차로(좌/우/유턴),<br/>커브, 차간 거리 유지 등 기초 주행 감각 회복"
+                    description: "가감속, 차선 변경, 교차로(좌/우/유턴), 커브, 차간 거리 유지 등 기초 주행 감각 회복"
                 },
                 {
                     step: "STEP 02",
                     title: "심화 주행 & 고속도로",
-                    description: "고속 주행, 시내 주행(실제 도로 구현),<br/>지방 도로 코스 등 다양한 환경 적응"
+                    description: "고속 주행, 시내 주행(실제 도로 구현), 지방 도로 코스 등 다양한 환경 적응"
                 },
                 {
                     step: "STEP 03",
                     title: "주차 완전 정복",
-                    description: "후진/평행/기계식 주차, 좁은 골목길,<br/>주차장 진출입로 등 고난이도 주차 마스터"
+                    description: "후진/평행/기계식 주차, 좁은 골목길, 주차장 진출입로 등 고난이도 주차 마스터"
                 }
             ]
         },
@@ -397,21 +402,24 @@ export const landingData: Record<string, LandingContent> = {
                 "사고 위험 없는 안전한 연수",
                 "자신감 생길 때까지 무한 반복"
             ],
-            ctaText: "24시간 완성반 상담하기"
+            ctaText: "처방전대로 시작하기",
+            ctaLink: "https://pcmap.place.naver.com/place/38729351/ticket"
         },
         cta: {
             title: "이제 운전이 즐거워집니다",
             subtitle: "더 이상 두려워하지 마세요. 고수의 운전면허가 함께합니다.",
-            button: "무료 상담 신청하기"
+            button: "무료 상담 신청하기",
+            link: "https://pcmap.place.naver.com/place/38729351/ticket"
         }
     },
     practice: {
         theme: "#8B5CF6", // Purple for Mastery/Pinpoint
         hero: {
             badge: "초보 탈출 핀셋 과외",
-            title: "10년째 직진만 하십니까?<br/>주차, 3시간이면 마스터합니다.",
+            title: "운전, 부족한 점만 골라 채우세요.<br/>1:1 핀셋 과외로 완성합니다.",
             subtitle: "여행, 출장 앞두고 급하신가요?<br/>부족한 스킬만 쏙쏙 골라 채워드립니다.",
-            ctaText: "원 포인트 레슨 예약"
+            ctaText: "원 포인트 레슨 예약",
+            ctaLink: "https://pcmap.place.naver.com/place/38729351/ticket"
         },
         problem: {
             title: "도로 연수는 <span class='text-status-red'>이동 시간이 절반</span>입니다.",
@@ -425,7 +433,7 @@ export const landingData: Record<string, LandingContent> = {
                 },
                 {
                     title: "상황별 시나리오",
-                    description: "비 오는 날, 밤길 운전, 복잡한 골목길 등<br/>실제 도로에서 만나기 힘든 상황을 설정합니다.",
+                    description: "골목길, 고속도로, 차로진입 등 까다로운 특정상황만 집중적으로 연습 가능합니다",
                     icon: "monitor",
                     highlight: false
                 },
@@ -466,7 +474,8 @@ export const landingData: Record<string, LandingContent> = {
                 "시간 낭비 없는 효율적 교육",
                 "부족한 부분만 쏙쏙 골라 마스터"
             ],
-            ctaText: "12시간 마스터반 상담하기"
+            ctaText: "12시간 마스터반 상담하기",
+            ctaLink: "https://pcmap.place.naver.com/place/38729351/ticket"
         }
     }
 };

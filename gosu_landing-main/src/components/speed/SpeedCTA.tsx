@@ -39,7 +39,7 @@ const SpeedCTA = () => {
                                 </div>
                                 <div>
                                     <span className="text-white font-bold">합격할 때까지 무제한 시뮬레이터</span>
-                                    <span className="block text-sm text-yellow-400">추가 비용 없이 100시간이고 타세요 (55만원 상당)</span>
+                                    <span className="block text-sm text-yellow-400">추가 비용 없이 100시간이고 타세요</span>
                                 </div>
                             </li>
                             <li className="flex items-start gap-3">
@@ -72,7 +72,7 @@ const SpeedCTA = () => {
                         </ul>
                         <div className="mt-6 pt-6 border-t border-white/10 text-center">
                             <p className="text-gray-300 text-sm mb-1">이 모든 혜택을</p>
-                            <p className="text-2xl font-bold text-white">일반 학원 <span className="text-yellow-500">절반 가격</span>으로</p>
+                            <p className="text-xl text-white">일반 학원 절반 가격으로</p>
                         </div>
                     </div>
 
@@ -82,7 +82,7 @@ const SpeedCTA = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-3 bg-black text-white px-10 py-5 rounded-full font-bold text-xl hover:scale-105 hover:bg-gray-900 transition-all duration-300 shadow-2xl"
                     >
-                        <span>2주 완성반 상담하기</span>
+                        <span>무제한 요금제로 순식간에 취득하러가기</span>
                         <ArrowRight />
                     </a>
                 </motion.div>

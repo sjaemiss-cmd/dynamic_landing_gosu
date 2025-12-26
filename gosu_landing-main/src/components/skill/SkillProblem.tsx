@@ -19,7 +19,7 @@ const SkillProblem = () => {
             <div className="container mx-auto px-4">
                 <div className="text-center mb-20">
                     <h2
-                        className="text-3xl md:text-5xl font-bold mb-6 font-hakgyoansim"
+                        className="text-3xl md:text-5xl font-bold mb-6 font-hakgyoansim text-gray-900"
                         dangerouslySetInnerHTML={{ __html: data.title }}
                     />
                     <p

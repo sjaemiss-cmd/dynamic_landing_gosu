@@ -7,14 +7,16 @@ import Image from "next/image";
 
 interface PracticeHeroProps {
     locationName?: string;
+    keyword?: string;
 }
 
-const PracticeHero = ({ locationName }: PracticeHeroProps) => {
+const PracticeHero = ({ locationName, keyword }: PracticeHeroProps) => {
     const data = landingData.practice.hero;
     const theme = landingData.practice.theme;
 
+    // 지역명이 있으면 별도 span으로 분리
     const titleContent = locationName
-        ? data.title.replace("10년째", `${locationName} 10년째`)
+        ? `<span class="block text-xl md:text-3xl font-bold text-gray-400 mb-3">${locationName} ${keyword || "운전연수"},</span>${data.title}`
         : data.title;
 
     return (
@@ -68,15 +70,12 @@ const PracticeHero = ({ locationName }: PracticeHeroProps) => {
                     />
 
                     {/* CTA Button */}
-                    <button
+                    <a
+                        href={data.ctaLink || "#offer"}
                         className="group relative inline-flex items-center gap-3 px-10 py-4 text-lg font-bold text-white shadow-lg transition-all overflow-hidden hover:scale-105 active:scale-95"
                         style={{
                             backgroundColor: 'transparent',
                             border: `2px solid ${theme}`
-                        }}
-                        onClick={() => {
-                            const element = document.getElementById('offer');
-                            element?.scrollIntoView({ behavior: 'smooth' });
                         }}
                     >
                         <span className="relative z-10">{data.ctaText}</span>
@@ -87,7 +86,7 @@ const PracticeHero = ({ locationName }: PracticeHeroProps) => {
                             className="absolute inset-0 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"
                             style={{ backgroundColor: theme }}
                         ></div>
-                    </button>
+                    </a>
                 </div>
             </div>
 

@@ -1,6 +1,24 @@
 // Intent types for landing pages
 export const intentData = ['speed', 'phobia', 'cost', 'practice', 'skill'];
 
+// 면허취득 계열 키워드 (speed, skill, cost 페이지용)
+const licenseKeywords = ['운전면허', '면허취득'];
+
+// 도로연수 계열 키워드 (phobia, practice 페이지용)
+const practiceKeywords = ['운전연수', '도로연수'];
+
+// Intent별 적합한 키워드 그룹 매핑
+export const intentKeywordMap: Record<string, string[]> = {
+    speed: licenseKeywords,
+    skill: licenseKeywords,
+    cost: licenseKeywords,
+    phobia: practiceKeywords,
+    practice: practiceKeywords,
+};
+
+// 모든 키워드 (locationData 생성용)
+const keywords = [...licenseKeywords, ...practiceKeywords];
+
 // Base region data with landmarks
 const regions = [
     { name: '도봉구', en: 'dobong', landmarks: ['도봉산', '서울창포원', '도봉구청'] },
@@ -20,14 +38,6 @@ const regions = [
     { name: '번동', en: 'beondong', landmarks: ['북서울꿈의숲', '강북구민운동장', '번동사거리'] },
     { name: '수유동', en: 'suyu', landmarks: ['수유역', '4.19 국립묘지', '화계사'] },
     { name: '우이동', en: 'ui', landmarks: ['도선사', '북한산 우이역', '우이동 계곡'] },
-];
-
-// SEO keywords to combine with regions
-const keywords = [
-    '운전연수',
-    '운전면허',
-    '면허취득',
-    '도로연수',
 ];
 
 // Generate locationData by combining regions × keywords

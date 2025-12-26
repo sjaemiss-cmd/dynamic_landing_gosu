@@ -61,7 +61,7 @@ const Offer: React.FC<OfferProps> = ({ offer, theme }) => {
                         </div>
 
                         <m.a
-                            href="https://pf.kakao.com/_xmxnmnG/chat"
+                            href={offer.ctaLink || "https://pf.kakao.com/_xmxnmnG/chat"}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-bold text-lg md:text-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full md:w-auto"
