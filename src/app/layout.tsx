@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "고수의 운전면허 도봉점 - 합격 무제한 보장",
     description: "합격할 때까지 추가 비용 0원! 쾌적한 실내에서 시뮬레이터로 안전하고 확실하게 면허 취득하세요.",
-    url: "https://gosu-dobong.com", // Replace with actual URL if known, otherwise placeholder
+    url: process.env.NEXT_PUBLIC_BASE_URL || "https://dobong.gosudriving.com",
     siteName: "고수의 운전면허 도봉점",
     images: [
       {
