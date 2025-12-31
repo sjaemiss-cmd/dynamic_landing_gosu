@@ -67,6 +67,10 @@ export const viewport: Viewport = {
   themeColor: "#FECE48",
 };
 
+import ScrollToTop from "@/components/ScrollToTop";
+
+// ... (imports)
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -80,6 +84,7 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} ${hakgyoansim.variable} antialiased font-sans`}
       >
+        <ScrollToTop />
         {children}
         <Analytics />
         <SpeedInsights />
