@@ -3,6 +3,8 @@
 import React from "react";
 import Image from "next/image";
 
+import { siteConfig } from "@/data/siteConfig";
+
 const Footer = ({ theme = "#FECE48" }: { theme?: string }) => {
     return (
         <footer className="bg-gray-900 py-12 text-gray-400 text-sm">
@@ -16,7 +18,7 @@ const Footer = ({ theme = "#FECE48" }: { theme?: string }) => {
                         <div className="mb-6 flex justify-center md:justify-start">
                             <Image
                                 src="/logo-white.png"
-                                alt="고수의 운전면허 도봉점"
+                                alt={siteConfig.common.companyName}
                                 width={160}
                                 height={48}
                                 className="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300"
@@ -25,19 +27,19 @@ const Footer = ({ theme = "#FECE48" }: { theme?: string }) => {
 
                         {/* [중요] p 태그를 div로 변경하여 Hydration 에러 방지 */}
                         <div className="mb-4 text-center md:text-left text-sm text-gray-400">
-                            서울 노원구 동일로1426 미도빌딩 5층 504호<br />
-                            사업자등록번호: 415-16-63829
+                            {siteConfig.common.address}<br />
+                            사업자등록번호: {siteConfig.common.businessNumber}
                         </div>
                     </div>
                     {/* 고객센터 영역: 이제 그리드가 1열이 되므로 text-center만 있어도 중앙으로 옵니다 */}
                     <div className="text-center md:text-center">
-                        <h4 className="font-bold text-white mb-4">고객센터</h4>
-                        <p className="font-bold text-lg mb-2" style={{ color: theme }}>02-930-9394</p>
-                        <p>평일 09:00 - 21:00<br />토요일 10:00 - 18:00<br />일요일 휴무</p>
+                        <h4 className="font-bold text-white mb-4">{siteConfig.footer.customerCenter}</h4>
+                        <p className="font-bold text-lg mb-2" style={{ color: theme }}>{siteConfig.common.phoneNumber}</p>
+                        <p className="whitespace-pre-line">{siteConfig.footer.operatingHours}</p>
                     </div>
                 </div>
                 <div className="border-t border-gray-800 pt-8 text-center text-gray-600">
-                    &copy; 2024 고수의 운전면허 도봉점. All rights reserved.
+                    {siteConfig.common.copyright}
                 </div>
             </div>
         </footer>

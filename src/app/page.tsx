@@ -3,7 +3,7 @@ import { landingData } from "@/data/landingData";
 
 // Components
 import Header from "@/components/Header";
-import TypeSwitcher from "@/components/TypeSwitcher";
+
 import Hero from "@/components/Hero";
 import CostCalculator from "@/components/CostCalculator";
 import USP from "@/components/USP";
@@ -31,7 +31,7 @@ export default function Home() {
     <main className="min-h-screen bg-brand-black font-sans text-white selection:bg-brand-yellow selection:text-brand-black overflow-x-hidden relative">
       <div className="relative z-10">
         <Header />
-        <TypeSwitcher />
+
 
         <Hero data={data.hero} theme={theme} />
         <CostCalculator />

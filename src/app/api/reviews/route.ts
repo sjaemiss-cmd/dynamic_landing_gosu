@@ -134,9 +134,7 @@ export async function GET() {
                 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
             },
         });
-    } catch (error) {
-        console.error('Error fetching reviews:', error);
-
+    } catch {
         return NextResponse.json({
             success: false,
             error: 'Failed to fetch reviews',

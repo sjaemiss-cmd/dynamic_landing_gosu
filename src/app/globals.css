@@ -11,6 +11,15 @@
     --font-hakgyoansim: var(--font-hakgyoansim);
 }
 
+@font-face {
+    font-family: 'establish Retrosans';
+    src: url('/fonts/establish_Retrosans.otf') format('opentype'),
+        url('/fonts/establish_Retrosans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --background: #111827;
     --foreground: #FFFFFF;
@@ -31,6 +40,11 @@ body {
 /* Utility class for Hakgyoansim font */
 .font-hakgyoansim {
     font-family: var(--font-hakgyoansim), sans-serif;
+}
+
+/* Utility class for Retrosans font */
+.font-retrosans {
+    font-family: 'establish Retrosans', sans-serif !important;
 }
 
 /* Fixed header offset for anchor links */

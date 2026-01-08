@@ -5,25 +5,10 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp, ChevronDown } from "lucide-react";
 
+import { siteConfig } from "@/data/siteConfig";
+
 const FAQ = ({ theme = "#FECE48" }: { theme?: string }) => {
-    const faqs = [
-        {
-            q: "정말 시뮬레이터로 연습해도 합격할 수 있나요?",
-            a: "네, 합격 할 수 있기 때문에 합격무제한 상품을 기획했습니다! 실제 시험장 코스를 완벽하게 구현하여 코스 암기와 핸들링 감각을 익히는데 최적화되어 있습니다. 실제 차를 타기 전 충분한 연습이 되어 합격률이 매우 높습니다.",
-        },
-        {
-            q: "운전을 아예 처음 해보는데 괜찮을까요?",
-            a: "물론입니다. 기초 조작법부터 차근차근 1:1로 알려드리기 때문에 초보자분들도 걱정 없이 시작하실 수 있습니다.",
-        },
-        {
-            q: "예약은 어떻게 하나요?",
-            a: "최초 예약은 네이버 예약 혹은 카카오톡 채팅을 통해 진행하실 수 있으며, 이후 예약은 카카오톡을 통해 원하시는 시간에 자유롭게 예약하실 수 있습니다. 당일 예약도 가능합니다.",
-        },
-        {
-            q: "불합격하면 추가 비용이 드나요?",
-            a: "합격보장반을 등록하시면 면허 취득하실 때까지 추가 비용 없이 3개월 간 무제한으로 연습하실 수 있습니다.",
-        },
-    ];
+    const faqs = siteConfig.faq.items;
 
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -39,7 +24,7 @@ const FAQ = ({ theme = "#FECE48" }: { theme?: string }) => {
                             className="object-contain"
                         />
                     </div>
-                    <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 relative z-10 font-hakgyoansim">자주 묻는 질문</h2>
+                    <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 relative z-10 font-hakgyoansim">{siteConfig.faq.title}</h2>
                 </div>
 
                 <div className="space-y-4">

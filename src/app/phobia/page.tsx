@@ -3,7 +3,7 @@ import { landingData } from "@/data/landingData";
 
 // Components
 import Header from "@/components/Header";
-import TypeSwitcher from "@/components/TypeSwitcher";
+
 import PhobiaHero from "@/components/phobia/PhobiaHero";
 import AnxietyReliefPrescription from "@/components/phobia/AnxietyReliefPrescription";
 import PhobiaProblem from "@/components/phobia/PhobiaProblem";
@@ -30,7 +30,7 @@ export default function PhobiaPage() {
         <main className="min-h-screen bg-brand-black font-sans text-white selection:bg-brand-yellow selection:text-brand-black overflow-x-hidden relative">
             <div className="relative z-10">
                 <Header />
-                <TypeSwitcher />
+
 
                 <PhobiaHero />
                 <AnxietyReliefPrescription />

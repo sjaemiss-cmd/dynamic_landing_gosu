@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 import React from "react";
 import { notFound } from "next/navigation";
-import { landingData } from "@/data/landingData";
+import { siteConfig } from "@/data/siteConfig";
 import { locationData, intentData, intentKeywordMap } from "@/data/seoData";
 import { getIntentComponents, isValidIntent, IntentType } from "@/config/intentConfig";
 
 // Shared Components
 import Header from "@/components/Header";
-import TypeSwitcher from "@/components/TypeSwitcher";
+
 import SocialProof from "@/components/SocialProof";
 import LocationSection from "@/components/LocationSection";
 import NewYearEvent from "@/components/NewYearEvent";
@@ -86,15 +86,18 @@ export default async function Page({ params }: Props) {
     }
 
     // Validate keyword for intent (Runtime check)
+    // Validate keyword for intent (Runtime check)
+    // Only validate if we have a valid location info (SEO page)
+    // If locationInfo is missing (e.g. /locations/cost), we treat it as a generic page and allow it
     const validKeywords = intentKeywordMap[intent] || [];
-    if (!validKeywords.includes(slugKeyword)) {
+    if (slugKeyword && !validKeywords.includes(slugKeyword)) {
         return notFound();
     }
 
     // Get theme and data
     const intentKey = intent as IntentType;
-    const data = landingData[intentKey];
-    const theme: string = data?.theme || landingData.cost.theme || "#FECE48";
+    const data = siteConfig.landing[intentKey];
+    const theme: string = data?.theme || siteConfig.landing.cost.theme || "#FECE48";
 
     // Get components from registry (OCP-compliant)
     const components = getIntentComponents(intent);
@@ -104,13 +107,13 @@ export default async function Page({ params }: Props) {
         <main className="min-h-screen bg-brand-black font-sans text-white selection:bg-brand-yellow selection:text-brand-black overflow-x-hidden relative">
             <div className="relative z-10">
                 <Header />
-                <TypeSwitcher />
+
 
                 {/* Intent-specific content rendered via registry */}
                 {isDataDriven ? (
                     // Data-driven pattern (cost page)
                     <>
-                        <Hero data={data.hero} theme={theme} locationName={locationName} keyword={slugKeyword} />
+                        <Hero data={data.hero} theme={theme} locationName={locationName} keyword={slugKeyword} designStyle={data.designStyle} />
                         <InteractiveSection />
                         <Problem data={data.problem} theme={theme} />
                         <Curriculum title={data.curriculum.title} steps={data.curriculum.steps} theme={theme} />

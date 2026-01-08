@@ -1,12 +1,11 @@
 import { Metadata } from "next";
 import React from "react";
-import { landingData } from "@/data/landingData";
+import { siteConfig } from "@/data/siteConfig";
 import { locationData } from "@/data/seoData";
 
 // Components
-// Components
 import Header from "@/components/Header";
-import TypeSwitcher from "@/components/TypeSwitcher";
+
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import USP from "@/components/USP";
@@ -55,17 +54,18 @@ export default async function Page({ params }: Props) {
   const keyword = locationInfo?.keyword; // Extract keyword
 
   // Use Cost Data for the main Hero (Broad Appeal)
-  const heroData = landingData.cost.hero;
-  const heroTheme = landingData.cost.theme || "#FECE48";
+  const heroData = siteConfig.landing.cost.hero;
+  const heroTheme = siteConfig.landing.cost.theme || "#FECE48";
+  const designStyle = siteConfig.landing.cost.designStyle;
 
   // Use Cost Problem Data for USP (or a dedicated USP data if available)
-  const uspData = landingData.cost.problem;
+  const uspData = siteConfig.landing.cost.problem;
 
   return (
     <main className="min-h-screen bg-brand-black font-sans text-white selection:bg-brand-yellow selection:text-brand-black overflow-x-hidden relative">
       <div className="relative z-10">
         <Header />
-        <TypeSwitcher />
+
 
         {/* 1. Main Hub Hero (Broad Appeal) */}
         <Hero
@@ -73,6 +73,7 @@ export default async function Page({ params }: Props) {
           theme={heroTheme}
           locationName={locationName}
           keyword={keyword}
+          designStyle={designStyle}
         />
 
         {/* 2. USP Section (Video Grid) */}

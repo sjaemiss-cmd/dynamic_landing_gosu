@@ -362,10 +362,10 @@ export const landingData: Record<string, LandingContent> = {
         theme: "#FECE48",
         designStyle: 'premium',
         hero: {
-            badge: "노원·도봉지역 운전면허 합격률 1위",
-            title: "운전면허 학원비 100만원?\n여기선 절반값으로 합격",
-            subtitle: "학원 다니면 재시험마다 15만원 깨집니다.\n고수에서는 합격할 때까지 추가비용 0원입니다.",
-            ctaText: "비용 절약 상담하기"
+            badge: "",
+            title: `<span class="block text-xl md:text-3xl font-bold text-white/90 mb-6 font-sans tracking-tight">노원·도봉 1위 시뮬레이션 면허</span><span class="block text-4xl md:text-7xl font-black text-brand-yellow leading-tight font-sans tracking-tighter drop-shadow-lg">반값이면 충분합니다.</span>`,
+            subtitle: "100만원짜리 면허, 반값으로 끝내세요.<br/>불합격해도 추가비용 0원.",
+            ctaText: "추가비용 없이 시작하기"
         },
         problem: {
             title: "왜 고수의 운전면허 도봉점인가요?",

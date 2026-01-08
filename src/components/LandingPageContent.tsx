@@ -13,10 +13,8 @@ const CostCalculator = dynamic(() => import("@/components/CostCalculator"), { ss
 const USP = dynamic(() => import("@/components/USP"), { ssr: false });
 const Curriculum = dynamic(() => import("@/components/Curriculum"));
 const Offer = dynamic(() => import("@/components/Offer"));
-const TypeSwitcher = dynamic(() => import("@/components/TypeSwitcher"), { ssr: false });
 
 // Shared Components
-const ReviewModal = dynamic(() => import("@/components/ReviewModal"), { ssr: false });
 const SocialProof = dynamic(() => import("@/components/SocialProof"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const LocationSection = dynamic(() => import("@/components/LocationSection"));
@@ -81,7 +79,7 @@ function LandingPageContent() {
 
             <div className="relative z-10">
                 <Header />
-                <TypeSwitcher />
+
 
                 {type === 'speed' ? (
                     // Speed Layout
@@ -145,8 +143,6 @@ function LandingPageContent() {
                 {/* Shared Sections */}
                 <SocialProof theme={theme} />
                 <LocationSection theme={theme} />
-                {/* Event Section */}
-                {/* <StudentEvent /> */}
                 <NewYearEvent theme={theme} />
                 <FAQ theme={theme} />
                 <Footer theme={theme} />

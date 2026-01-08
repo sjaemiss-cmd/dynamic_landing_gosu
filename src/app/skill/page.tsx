@@ -3,7 +3,7 @@ import { landingData } from "@/data/landingData";
 
 // Components
 import Header from "@/components/Header";
-import TypeSwitcher from "@/components/TypeSwitcher";
+
 import SkillHero from "@/components/skill/SkillHero";
 import SkillDiagnosisTest from "@/components/skill/SkillDiagnosisTest";
 import SkillProblem from "@/components/skill/SkillProblem";
@@ -30,7 +30,7 @@ export default function SkillPage() {
         <main className="min-h-screen bg-brand-black font-sans text-white selection:bg-brand-yellow selection:text-brand-black overflow-x-hidden relative">
             <div className="relative z-10">
                 <Header />
-                <TypeSwitcher />
+
 
                 <SkillHero />
                 <SkillDiagnosisTest />

@@ -13,6 +13,8 @@ import { usePathname } from "next/navigation";
 
 // ... (imports)
 
+import { siteConfig } from "@/data/siteConfig";
+
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathname = usePathname();
@@ -37,7 +39,7 @@ const Header = () => {
                     <div className="flex items-center">
                         <Image
                             src="/logo-white.png"
-                            alt="고수의 운전면허 도봉점"
+                            alt={siteConfig.common.companyName}
                             width={160}
                             height={48}
                             className="h-10 md:h-12 w-auto object-contain"
@@ -49,19 +51,19 @@ const Header = () => {
                     <div className="hidden md:flex items-center gap-6">
                         <nav className="flex gap-6 text-sm font-medium text-gray-300">
                             <a href="#calculator" className="hover:text-white transition-colors">{calculatorLabel}</a>
-                            <a href="#usp" className="hover:text-white transition-colors">특장점</a>
+                            <a href="#usp" className="hover:text-white transition-colors">{siteConfig.header.nav.usp}</a>
                             {/* ... other links ... */}
-                            <a href="#reviews" className="hover:text-white transition-colors">후기</a>
-                            <a href="#location" className="hover:text-white transition-colors">약도</a>
-                            <a href="#event" className="hover:text-white transition-colors">이벤트</a>
-                            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+                            <a href="#reviews" className="hover:text-white transition-colors">{siteConfig.header.nav.reviews}</a>
+                            <a href="#location" className="hover:text-white transition-colors">{siteConfig.header.nav.location}</a>
+                            <a href="#event" className="hover:text-white transition-colors">{siteConfig.header.nav.event}</a>
+                            <a href="#faq" className="hover:text-white transition-colors">{siteConfig.header.nav.faq}</a>
                         </nav>
                         <a
-                            href="tel:02-930-9394"
+                            href={`tel:${siteConfig.common.phoneNumber}`}
                             className="flex items-center gap-2 bg-brand-yellow text-brand-black px-4 py-2 rounded-full font-bold hover:bg-yellow-400 transition-colors"
                         >
                             <Phone size={18} />
-                            <span>전화 상담</span>
+                            <span>{siteConfig.header.buttons.call}</span>
                         </a>
                     </div>
 
@@ -69,7 +71,7 @@ const Header = () => {
                     <div className="md:hidden flex items-center gap-3">
                         {/* Phone Button */}
                         <a
-                            href="tel:02-930-9394"
+                            href={`tel:${siteConfig.common.phoneNumber}`}
                             className="flex items-center justify-center gap-1.5 bg-brand-yellow text-brand-black px-3 py-2 rounded-full font-bold text-sm hover:bg-yellow-400 transition-colors"
                         >
                             <Phone size={16} />
@@ -124,7 +126,7 @@ const Header = () => {
                                 }}
                                 className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
                             >
-                                특장점
+                                {siteConfig.header.nav.usp}
                             </a>
                             <a
                                 href="#reviews"
@@ -137,7 +139,7 @@ const Header = () => {
                                 }}
                                 className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
                             >
-                                후기
+                                {siteConfig.header.nav.reviews}
                             </a>
                             <a
                                 href="#location"
@@ -150,7 +152,7 @@ const Header = () => {
                                 }}
                                 className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
                             >
-                                약도
+                                {siteConfig.header.nav.location}
                             </a>
                             <a
                                 href="#event"
@@ -163,7 +165,7 @@ const Header = () => {
                                 }}
                                 className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
                             >
-                                이벤트
+                                {siteConfig.header.nav.event}
                             </a>
                             <a
                                 href="#faq"
@@ -176,7 +178,7 @@ const Header = () => {
                                 }}
                                 className="text-gray-300 hover:text-white hover:bg-gray-800 active:bg-gray-700 transition-colors px-4 py-4 rounded-lg text-base font-medium touch-manipulation"
                             >
-                                FAQ
+                                {siteConfig.header.nav.faq}
                             </a>
                         </nav>
                     </m.div>

@@ -69,8 +69,6 @@ export const viewport: Viewport = {
 
 import ScrollToTop from "@/components/ScrollToTop";
 
-// ... (imports)
-
 export default function RootLayout({
   children,
 }: Readonly<{

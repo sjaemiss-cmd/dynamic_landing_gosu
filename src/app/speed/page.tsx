@@ -3,7 +3,7 @@ import { landingData } from "@/data/landingData";
 
 // Components
 import Header from "@/components/Header";
-import TypeSwitcher from "@/components/TypeSwitcher";
+
 import SpeedHero from "@/components/speed/SpeedHero";
 import LicenseDDayCalculator from "@/components/speed/LicenseDDayCalculator";
 import SpeedProblem from "@/components/speed/SpeedProblem";
@@ -31,7 +31,7 @@ export default function SpeedPage() {
         <main className="min-h-screen bg-brand-black font-sans text-white selection:bg-brand-yellow selection:text-brand-black overflow-x-hidden relative">
             <div className="relative z-10">
                 <Header />
-                <TypeSwitcher />
+
 
                 <SpeedHero />
                 <LicenseDDayCalculator />
